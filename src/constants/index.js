@@ -199,6 +199,29 @@ const projects = [
         live_link: "https://app.lucydigital.io/",
     },
     {
+        name: "LetsChat",
+        description:
+            "A real-time chat application designed to deliver secure chat communication with features like user authentication, responsive UI, and message persistence. LetsChat supports private conversations, group chats, and real-time updates.",
+        tags: [
+            {
+                name: "MERN Stack",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "WebSocket",
+                color: "green-text-gradient",
+            },
+            {
+                name: "JWT",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: "../assets/LetsChat.png",
+        alt: "LetsChat",
+        source_code_link: "https://github.com/imunreal7/LetsChat",
+        live_link: "https://resonant-creponne-468d86.netlify.app/",
+    },
+    {
         name: "FoodPort",
         description:
             "FoodPort is an AI-driven online food delivery platform that offers personalized restaurant and dish recommendations based on user preferences. User can browse restaurants, select dishes and place orders with  account management and order history features.",
@@ -226,29 +249,6 @@ const projects = [
         live_link: "https://food-port-khaki.vercel.app/",
     },
     {
-        name: "LetsChat",
-        description:
-            "A real-time chat application designed to deliver secure chat communication with features like user authentication, responsive UI, and message persistence. LetsChat supports private conversations, group chats, and real-time updates.",
-        tags: [
-            {
-                name: "MERN Stack",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "WebSocket",
-                color: "green-text-gradient",
-            },
-            {
-                name: "JWT",
-                color: "pink-text-gradient",
-            },
-        ],
-        image: "../assets/LetsChat.png",
-        alt: "LetsChat",
-        source_code_link: "https://github.com/imunreal7/LetsChat",
-        live_link: "https://resonant-creponne-468d86.netlify.app/",
-    },
-    {
         name: "Smart Therapist",
         description:
             "Developed an interactive web application where users can input details about their day, and the application analyzes their emotions, providing output that reflects their mood and sends alerts to family and doctor if user is in a bad mood for back-to-back days.",
@@ -270,6 +270,41 @@ const projects = [
         alt: "Smart Therapist",
         source_code_link: "https://github.com/imunreal7/smart_therapist",
         live_link: "https://smart-therapist.onrender.com/",
+    },
+    {
+        name: "My Recipes in Django",
+        description:
+            "A full-stack recipe management web application built with Django. Features include user registration, recipe creation, editing, and categories with a responsive UI, newsletters and chef connect features.",
+        tags: [
+            {
+                name: "Python",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Django",
+                color: "green-text-gradient",
+            },
+            {
+                name: "SQLite",
+                color: "orange-text-gradient",
+            },
+            {
+                name: "HTML",
+                color: "pink-text-gradient",
+            },
+            {
+                name: "CSS",
+                color: "purple-text-gradient",
+            },
+            {
+                name: "Bootstrap",
+                color: "cyan-text-gradient",
+            },
+        ],
+        image: "../assets/explore_recipes.png",
+        alt: "My Recipes in Django",
+        source_code_link: "https://github.com/imunreal7/my-recipes-in-django",
+        live_link: "https://github.com/imunreal7/my-recipes-in-django", // Add deployment link here if hosted live
     },
     {
         name: "Snake Game",
