@@ -251,7 +251,7 @@ const projects = [
     {
         name: "Smart Therapist",
         description:
-            "Developed an interactive web application where users can input details about their day, and the application analyzes their emotions, providing output that reflects their mood and sends alerts to family and doctor if user is in a bad mood for back-to-back days.",
+            "Developed a web app where users can input details about their day, and the app analyzes their emotions, provide their mood as output and sends alerts to family and doctor if user is in a bad mood for back-to-back days.",
         tags: [
             {
                 name: "Python",
@@ -296,15 +296,11 @@ const projects = [
                 name: "CSS",
                 color: "purple-text-gradient",
             },
-            {
-                name: "Bootstrap",
-                color: "cyan-text-gradient",
-            },
         ],
         image: "../assets/explore_recipes.png",
         alt: "My Recipes in Django",
         source_code_link: "https://github.com/imunreal7/my-recipes-in-django",
-        live_link: "https://github.com/imunreal7/my-recipes-in-django", // Add deployment link here if hosted live
+        live_link: "https://my-recipes-in-django.onrender.com/",
     },
     {
         name: "Snake Game",

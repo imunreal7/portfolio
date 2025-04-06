@@ -6,11 +6,11 @@ Alright, let’s ditch the boring README vibes and make something that feels mor
 
 > _"This is not just code. This is choreography. Every pixel has purpose. Every function has fire."_
 
-You’ve stumbled into the engine room of [my portfolio](https://app.lucydigital.io/). But don't get too comfortable — this repo is **not** your final destination.
+You’ve stumbled into the engine room of [my portfolio](https://aman-dubey-portfolio.web.app/). But don't get too comfortable — this repo is **not** your final destination.
 
 ## 👁‍🗨 The Interface Is the Surface
 
-Everything you see here? It’s just the _container_ — the **shell of something alive**. The real magic happens when you [step into the experience](https://app.lucydigital.io/).
+Everything you see here? It’s just the _container_ — the **shell of something alive**. The real magic happens when you [step into the experience](https://aman-dubey-portfolio.web.app/#experience).
 Animations? Subtle.
 Transitions? Seamless.
 Technologies? Stacked like a full-course meal for a production-hungry dev.
@@ -42,7 +42,7 @@ This isn't just a resume. It's a **reputation in motion**. Every section you scr
 
 If you’re here to clone — clone away.
 If you’re here to learn — explore every file.
-If you’re here to **hire, collaborate, or just vibe** — [reach out](https://app.lucydigital.io/#contact).
+If you’re here to **hire, collaborate, or just vibe** — [reach out](https://aman-dubey-portfolio.web.app/#contact).
 
 But most of all — go check out the live site.
 Because this readme?
