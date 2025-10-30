@@ -67,7 +67,8 @@ const Navbar = () => {
                         className="h-9 w-9 rounded-full object-contain"
                     />
                     <p className="cursor-pointer text-[18px] font-bold text-white">
-                        Aman Dubey <span className="hidden sm:inline">| SOFTWARE ENGINEER</span>
+                        Aman Dubey{" "}
+                        <span className="hidden sm:inline">| SENIOR SOFTWARE ENGINEER</span>
                     </p>
                 </Link>
 

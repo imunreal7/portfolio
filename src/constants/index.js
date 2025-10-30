@@ -74,6 +74,10 @@ const technologies = [
     { name: "Heroku", icon: "../assets/tech/heroku.png" },
     { name: "Git", icon: "../assets/tech/git.png" },
     { name: "EC2", icon: "../assets/tech/ec2.png" },
+    { name: "Vue.js", icon: "../assets/tech/vuejs.png" },
+    { name: "GCP Pub/Sub", icon: "../assets/tech/gcp-pubsub.png" },
+    { name: "GCP Cloud Tasks", icon: "../assets/tech/gcp-cloudtasks.png" },
+    { name: "Pinia", icon: "../assets/tech/pinia.png" },
 ];
 
 // Tools & platforms you utilize – arranged by their practical impact
@@ -86,15 +90,34 @@ const tools = [
     { name: "Postman", icon: "../assets/tools/postman.png" },
     { name: "Git CI/CD", icon: "../assets/tools/cicd.png" },
     { name: "MongoDB Compass", icon: "../assets/tools/mongodbCompass.png" },
+    { name: "Superset", icon: "../assets/tools/superset.png" },
+    { name: "Snowflake", icon: "../assets/tools/snowflake.png" },
 ];
 
 const experiences = [
+    {
+        title: "Senior Software Engineer (SDE III)",
+        company_name: "HighLevel",
+        icon: "../assets/team-lead.png", // update icon if you add one for HighLevel
+        iconBg: "#3B1064",
+        date: "Jun 2025 - Present",
+        points: [
+            "Lead engineer for Social Planner platform, managing 25M+ posts/month across multiple social channels with zero downtime.",
+            "Designed and deployed proactive cross-platform token refresh infrastructure, reducing authentication failures by 98%+.",
+            "Architected and optimized media pipelines processing 50M+ assets/month (images, videos, stories), enhancing publishing experience and compliance.",
+            "Drove system reliability improvements resulting in 70% fewer incidents by resolving auth issues, missed schedules, infra scaling bottlenecks, and debugging APIs.",
+            "Built observability frameworks: created Superset dashboards, Snowflake datasets, and Grafana alerts for real-time monitoring and analytics.",
+            "Led cross-functional development (backend, frontend, infra, mobile) on features like Push Publish and advanced scheduling.",
+            "Authored documentation, mentored engineers in distributed system design, contributed to public-facing docs, and led KT sessions.",
+            "Tech Stack: TypeScript, NestJS, Node.js, Vue.js (Pinia), GCP (Pub/Sub, Cloud Tasks), MongoDB, Kubernetes, Jenkins, Grafana, Superset, Snowflake.",
+        ],
+    },
     {
         title: "Software Engineer",
         company_name: "ATMECS Global Inc",
         icon: "../assets/team-lead.png",
         iconBg: "#383E56",
-        date: "Apr 2023 - Present",
+        date: "Apr 2023 - Jun 2025",
         points: [
             "Engineered the Lucy 2.0 MVP by architecting a scalable, multi-tenant web application featuring RESTful APIs, robust database design, comprehensive Jest testing, Dockerized deployments, and React-driven frontend.",
             "Led cross-functional teams of 12 engineers to enhance client communications and boost feature delivery speed by 50%.",

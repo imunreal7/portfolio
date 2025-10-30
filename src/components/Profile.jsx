@@ -28,11 +28,11 @@ const Profile = () => {
                             Hi, I'm <span className="text-[#915EFF]">Aman</span>
                         </h1>
                         <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-                            Full-Stack Engineer
+                            Full-Stack Engineer | Team Lead
                             <br />
                             <span className="gradient-text">
-                                I build scalable, enterprise-level applications using MERN Stack,
-                                Python & AWS
+                                I build scalable, cloud-native applications powering millions —
+                                using MERN, NestJS, Python, GCP & AWS.
                             </span>
                         </p>
 
