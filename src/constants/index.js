@@ -28,16 +28,16 @@ const navLinks = [
 // Services you offer – ordered by resume emphasis
 const services = [
     {
-        title: "End-to-End Full Stack Developer",
+        title: "Distributed Systems & Cloud Architecture",
+        icon: "../assets/microservices.png",
+    },
+    {
+        title: "End-to-End Full Stack Engineering",
         icon: "../assets/full-stack.png",
     },
     {
-        title: "Cloud & DevOps Specialist",
+        title: "AI-Powered Systems & Automation",
         icon: "../assets/cloud.png",
-    },
-    {
-        title: "Microservices & System Designs",
-        icon: "../assets/microservices.png",
     },
     {
         title: "Team Leadership & Agile Delivery",
@@ -96,20 +96,21 @@ const tools = [
 
 const experiences = [
     {
-        title: "Senior Software Engineer (SDE III)",
+        title: "Lead Software Engineer (SDE III)",
         company_name: "HighLevel",
-        icon: "../assets/team-lead.png", // update icon if you add one for HighLevel
+        icon: "../assets/team-lead.png",
         iconBg: "#3B1064",
         date: "Jun 2025 - Present",
         points: [
-            "Lead engineer for Social Planner platform, managing 25M+ posts/month across multiple social channels with zero downtime.",
-            "Designed and deployed proactive cross-platform token refresh infrastructure, reducing authentication failures by 98%+.",
-            "Architected and optimized media pipelines processing 50M+ assets/month (images, videos, stories), enhancing publishing experience and compliance.",
-            "Drove system reliability improvements resulting in 70% fewer incidents by resolving auth issues, missed schedules, infra scaling bottlenecks, and debugging APIs.",
-            "Built observability frameworks: created Superset dashboards, Snowflake datasets, and Grafana alerts for real-time monitoring and analytics.",
-            "Led cross-functional development (backend, frontend, infra, mobile) on features like Push Publish and advanced scheduling.",
-            "Authored documentation, mentored engineers in distributed system design, contributed to public-facing docs, and led KT sessions.",
-            "Tech Stack: TypeScript, NestJS, Node.js, Vue.js (Pinia), GCP (Pub/Sub, Cloud Tasks), MongoDB, Kubernetes, Jenkins, Grafana, Superset, Snowflake.",
+            "Lead engineering for Social Planner, a distributed social media publishing platform processing 25M+ posts/month across major platforms with 99.2% uptime.",
+            "Delivered Pinterest Multi-Board Pin and LinkedIn Poll Post features end-to-end under Full Stack Builder (FSB), owning product analysis, system design, development, QA, deployment, and adoption tracking.",
+            "Designed a CRON-based proactive token refresh system, reducing auth/token failures by 98%+ across 6M+ connected accounts.",
+            "Built scalable media optimization pipelines processing 75M+ media assets/month, reducing posting support tickets by 85%.",
+            "Reduced worker CPU/memory spikes by 95% through concurrency safeguards, distributed async worker systems, and infrastructure optimization using GCP Pub/Sub, Cloud Tasks, and batch processing.",
+            "Designed observability dashboards (Superset + Snowflake + Grafana) improving visibility across 10+ distributed services.",
+            "Improved release safety and regression detection by adding 5,200+ unit test cases with 97%+ coverage across critical modules.",
+            "Authored distributed system architecture documentation and onboarded 3 senior engineers, improving ramp-up efficiency.",
+            "Tech Stack: TypeScript, Python, NestJS, Node.js, Vue.js, MongoDB, Redis, GCP Pub/Sub, Cloud Tasks, Kubernetes, Grafana.",
         ],
     },
     {
@@ -119,11 +120,11 @@ const experiences = [
         iconBg: "#383E56",
         date: "Apr 2023 - Jun 2025",
         points: [
-            "Engineered the Lucy 2.0 MVP by architecting a scalable, multi-tenant web application featuring RESTful APIs, robust database design, comprehensive Jest testing, Dockerized deployments, and React-driven frontend.",
-            "Led cross-functional teams of 12 engineers to enhance client communications and boost feature delivery speed by 50%.",
-            "Contributed to 5 projects under Lucy HyperloopTT, built two from ideation to production, and enhanced three with new features.",
+            "Contributed to 5 projects under HyperloopTT, built 2 from ideation to production, and enhanced 3 with new features.",
+            "Architected and scaled a multi-tenant SaaS platform from scratch using MERN Stack + AWS, delivering it to full production.",
             "Built an AI evaluation service via FastAPI, helping 90% of users make job decisions with NLP-based match explanations.",
-            " Optimized backend performance of Lucy 2.0 by 50% through API redesign, data model refactoring, and query optimizations.",
+            "Led a team of 12 engineers, accelerating feature releases by 50% in Agile methodology with 100% on-time deliveries.",
+            "Optimized backend system by 50% via API redesign and query tuning; reduced bugs by 50% by implementing Jest unit tests.",
         ],
     },
     {
@@ -195,6 +196,35 @@ export default recommedations;
 
 const projects = [
     {
+        name: "Engram",
+        description:
+            "AI-powered codebase intelligence for dependency tracing, PR analysis, dead code detection, and system reasoning across multi-repos. Indexes repositories into Neo4j knowledge graphs and Qdrant semantic search, exposed via MCP server, CLI, and web dashboard for AI coding agents.",
+        tags: [
+            {
+                name: "Next.js",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Neo4j",
+                color: "green-text-gradient",
+            },
+            {
+                name: "AI Agents",
+                color: "pink-text-gradient",
+            },
+            {
+                name: "Knowledge Graphs",
+                color: "orange-text-gradient",
+            },
+        ],
+        image: "../assets/engram.png",
+        alt: "Engram",
+        source_code_link:
+            "https://www.linkedin.com/posts/amandubey7_ai-coding-agents-can-read-files-but-they-activity-7439913495913025536-qwfr",
+        live_link:
+            "https://www.linkedin.com/posts/amandubey7_ai-coding-agents-can-read-files-but-they-activity-7439913495913025536-qwfr",
+    },
+    {
         name: "Lucy HyperloopTT",
         description:
             "Interface for job seekers & employers to manage recruiting processes efficiently. AI-powered evaluation system for user-job assessments, contract management tool, work-hour tracking, organization management tools, and compensations.",
@@ -247,22 +277,22 @@ const projects = [
     {
         name: "FoodPort",
         description:
-            "FoodPort is an AI-driven online food delivery platform that offers personalized restaurant and dish recommendations based on user preferences. User can browse restaurants, select dishes and place orders with  account management and order history features.",
+            "AI-driven food delivery platform with personalized restaurant and dish recommendations based on user preferences and order history. Built with MERN stack, FastAPI microservices, TensorFlow, and FAISS vector search, with Redis caching for optimized performance.",
         tags: [
             {
                 name: "MERN Stack",
                 color: "blue-text-gradient",
             },
             {
-                name: "Redux",
+                name: "Redis",
                 color: "green-text-gradient",
             },
             {
-                name: "AWS",
+                name: "FastAPI",
                 color: "pink-text-gradient",
             },
             {
-                name: "Python",
+                name: "TensorFlow",
                 color: "orange-text-gradient",
             },
         ],
@@ -347,6 +377,29 @@ const projects = [
         alt: "Snake Game",
         source_code_link: "https://github.com/imunreal7/snake-game-react",
         live_link: "https://snake-game-a008f.web.app/",
+    },
+    {
+        name: "Hand Gesture Recognition (IEEE)",
+        description:
+            "Published research on an efficient decision-based hand gesture recognition system using CNN and OpenCV, enabling gesture-to-command translation to help mute people communicate and express themselves.",
+        tags: [
+            {
+                name: "CNN",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "OpenCV",
+                color: "green-text-gradient",
+            },
+            {
+                name: "IEEE",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: "../assets/hand-gesture.png",
+        alt: "Hand Gesture Recognition",
+        source_code_link: "https://ijsrd.com/Article.php?manuscript=IJSRDV8I20695",
+        live_link: "https://ijsrd.com/Article.php?manuscript=IJSRDV8I20695",
     },
 ];
 

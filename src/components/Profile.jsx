@@ -28,11 +28,11 @@ const Profile = () => {
                             Hi, I'm <span className="text-[#915EFF]">Aman</span>
                         </h1>
                         <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-                            Full-Stack Engineer | Team Lead
+                            Lead Software Engineer | Distributed Systems
                             <br />
                             <span className="gradient-text">
-                                I build scalable, cloud-native applications powering millions —
-                                using MERN, NestJS, Python, GCP & AWS.
+                                I build scalable, cloud-native platforms processing millions —
+                                using NestJS, Python, TypeScript, GCP & AWS.
                             </span>
                         </p>
 
@@ -59,7 +59,7 @@ const Profile = () => {
                                 <FaEnvelope className="h-8 w-8 text-white" />
                             </a>
                             <a
-                                href="https://drive.google.com/file/d/1MOX838bcl875ctisdutZFkUa1N2GwOP6/view?usp=drive_link"
+                                href="/Aman_Dubey_Resume_2026.docx"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

@@ -41,14 +41,13 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className="mt-4 max-w-3xl text-[17px] leading-[30px] text-secondary"
             >
-                I am a Senior Software Engineer with over 5 years of experience designing, building,
-                and scaling high-performance, cloud-native platforms. Currently, I am leading
-                engineering for the Social Planner platform at HighLevel, empowering businesses to
-                publish 25M+ posts/month with zero downtime. My expertise includes MERN stack,
-                Node.js, TypeScript, Vue.js, Python, and both AWS & GCP architectures. I am
-                passionate about robust system design, distributed microservices, and driving
-                results through technical mentorship, cross-functional collaboration, and a strong
-                focus on reliability and scalability.
+                I am a Lead Software Engineer with over 6 years of experience designing,
+                building, and scaling distributed, cloud-native platforms. Currently, I lead
+                engineering for Social Planner at HighLevel — a platform processing 25M+ posts/month
+                with 99.2% uptime across major social channels. My expertise spans Node.js, NestJS,
+                TypeScript, Python, Vue.js, and AWS & GCP architectures, with a focus on distributed
+                systems, microservices, AI-powered systems, and driving reliability through technical
+                mentorship and cross-functional collaboration.
             </motion.p>
 
             <div
