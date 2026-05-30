@@ -41,13 +41,13 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className="mt-4 max-w-3xl text-[17px] leading-[30px] text-secondary"
             >
-                I am a Lead Software Engineer with over 6 years of experience designing,
-                building, and scaling distributed, cloud-native platforms. Currently, I lead
-                engineering for Social Planner at HighLevel — a platform processing 25M+ posts/month
-                with 99.2% uptime across major social channels. My expertise spans Node.js, NestJS,
-                TypeScript, Python, Vue.js, and AWS & GCP architectures, with a focus on distributed
-                systems, microservices, AI-powered systems, and driving reliability through technical
-                mentorship and cross-functional collaboration.
+                I am a Lead Software Engineer with over 6 years of experience designing, building,
+                and scaling distributed, cloud-native platforms. Currently, I lead engineering for
+                Social Planner at HighLevel — a platform processing 25M+ posts/month with 99.2%
+                uptime across major social channels. My expertise spans Node.js, NestJS, TypeScript,
+                Python, Vue.js, and AWS & GCP architectures, with a focus on distributed systems,
+                microservices, AI-powered systems, and driving reliability through technical
+                mentorship & cross-functional collaboration.
             </motion.p>
 
             <div
