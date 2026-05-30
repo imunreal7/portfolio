@@ -185,7 +185,7 @@ const recommedations = [
         recommedation:
             "Working under Aman's leadership has been a pleasure. His innovative problem-solving and expertise in backend and cloud technologies consistently elevate our projects.",
         name: "Venugopal Chavate",
-        designation: "Senior Software Engineer",
+        designation: "Lead Software Engineer",
         company: "ATMECS Global Inc",
         image: "../assets/pictures/venu.jpeg",
         linkedIn: "https://www.linkedin.com/in/venugopalvc/",
