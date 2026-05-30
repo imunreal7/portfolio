@@ -59,7 +59,7 @@ const Profile = () => {
                                 <FaEnvelope className="h-8 w-8 text-white" />
                             </a>
                             <a
-                                href="/Aman_Dubey_Resume_2026.docx"
+                                href="https://drive.google.com/file/d/1MOX838bcl875ctisdutZFkUa1N2GwOP6/view?usp=drive_link"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

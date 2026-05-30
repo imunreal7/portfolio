@@ -68,7 +68,7 @@ const Navbar = () => {
                     />
                     <p className="cursor-pointer text-[18px] font-bold text-white">
                         Aman Dubey{" "}
-                        <span className="hidden sm:inline">| SENIOR SOFTWARE ENGINEER</span>
+                        <span className="hidden sm:inline">| LEAD SOFTWARE ENGINEER</span>
                     </p>
                 </Link>
 
