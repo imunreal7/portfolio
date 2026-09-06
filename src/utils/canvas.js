@@ -3,14 +3,16 @@
  * @returns {{ w: number, h: number }} the drawing size in CSS pixels
  */
 export const fitCanvas = (canvas, ctx, maxDpr = 2) => {
-    const rect = canvas.parentElement.getBoundingClientRect();
+    // Layout size, not the bounding rect: a parent mid-way through a scale animation would
+    // otherwise size the canvas to the transformed box and leave it small and off-centre.
+    const { offsetWidth: w, offsetHeight: h } = canvas.parentElement;
     const dpr = Math.min(maxDpr, window.devicePixelRatio || 1);
-    canvas.width = Math.floor(rect.width * dpr);
-    canvas.height = Math.floor(rect.height * dpr);
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    return { w: rect.width, h: rect.height };
+    return { w, h };
 };
 
 /**

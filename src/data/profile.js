@@ -5,8 +5,8 @@ export const profile = {
     role: "Lead Software Engineer",
     company: "HighLevel",
     product: "Social Planner",
-    location: "Noida, Uttar Pradesh, India",
-    shortLocation: "Noida, India",
+    location: "Delhi, India",
+    shortLocation: "Delhi, India",
     pronouns: "he/him",
     headline:
         "Distributed Systems, Microservices & Cloud Architecture | Node.js, NestJS, MERN, AWS, GCP | AI Agentic Systems",

@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { FiArrowDown, FiCommand, FiFileText, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import PipelineCanvas from "./PipelineCanvas";
 import Constellation from "./Constellation";
+import Aurora from "./Aurora";
+import Globe from "./Globe";
+import useScramble from "../hooks/useScramble";
 import ErrorBoundary from "./ErrorBoundary";
 import Button from "./ui/Button";
 import { usePalette } from "./CommandPalette";
@@ -126,13 +129,6 @@ const badges = [
     { text: "6M+ accounts", pos: "-left-2 bottom-8 lg:-left-10", delay: 2.1 },
 ];
 
-// A glowing dot pinned to an orbit ring; the ring's own rotation carries it around.
-const Satellite = ({ className }) => (
-    <span
-        className={`absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full ${className}`}
-    />
-);
-
 const Portrait = () => (
     <motion.div
         variants={{
@@ -141,13 +137,6 @@ const Portrait = () => (
         }}
         className="relative mx-auto hidden h-[300px] w-[300px] sm:block lg:h-[380px] lg:w-[380px]"
     >
-        <div className="spin-slow absolute inset-0 rounded-full border border-dashed border-acc/30">
-            <Satellite className="left-1/2 top-0 bg-acc shadow-[0_0_14px_3px_rgba(125,249,208,0.55)]" />
-            <Satellite className="left-0 top-1/2 h-1.5 w-1.5 bg-acc2 shadow-[0_0_10px_2px_rgba(167,139,250,0.55)]" />
-        </div>
-        <div className="spin-slow-rev absolute inset-6 rounded-full border border-line">
-            <Satellite className="bottom-0 left-1/2 bg-sky shadow-[0_0_12px_2px_rgba(96,165,250,0.55)]" />
-        </div>
         <div className="absolute inset-6 rounded-full bg-[conic-gradient(from_180deg,rgba(125,249,208,0.25),transparent_30%,rgba(167,139,250,0.25)_60%,transparent_80%)] blur-2xl" />
         <img
             src={profile.avatar}
@@ -156,6 +145,12 @@ const Portrait = () => (
             width={500}
             height={500}
         />
+        {/* Oversized so arcs can bow outside the sphere; the sphere itself hugs the photo. */}
+        <div className="pointer-events-none absolute -inset-[30%]">
+            <ErrorBoundary>
+                <Globe coreRadius={0.74} />
+            </ErrorBoundary>
+        </div>
         {badges.map((b) => (
             <motion.div
                 key={b.text}
@@ -172,10 +167,17 @@ const Portrait = () => (
 const Hero = () => {
     const { open } = usePalette();
     const booted = useBooted();
+    const first = useScramble("Aman", booted);
+    const last = useScramble("Dubey", booted, { delay: 560 });
 
     return (
         <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden">
-            {/* Slow ambient mesh across the whole hero; softened behind the copy by its mask. */}
+            {/* GPU aurora curtains at the top and bottom, then the slow mesh above them. */}
+            <div className="absolute inset-0">
+                <ErrorBoundary>
+                    <Aurora />
+                </ErrorBoundary>
+            </div>
             <div className="absolute inset-0">
                 <ErrorBoundary>
                     <Constellation />
@@ -221,9 +223,9 @@ const Hero = () => {
                 <div className="grid items-center gap-14 lg:grid-cols-[1.35fr_1fr]">
                     <div>
                         <h1 className="display text-[clamp(3.2rem,11vw,9rem)] font-extrabold leading-[0.9] text-ink">
-                            <Word i={0}>Aman</Word>{" "}
+                            <Word i={0}>{first}</Word>{" "}
                             <Word i={1} className="text-gradient">
-                                Dubey
+                                {last}
                             </Word>
                         </h1>
                         <motion.p

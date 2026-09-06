@@ -13,6 +13,7 @@ import Projects from "./components/Projects";
 import Recommendations from "./components/Recommendations";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Cursor from "./components/Cursor";
 
 const App = () => (
     // reducedMotion="user" makes every framer-motion transform respect the OS setting.
@@ -23,6 +24,7 @@ const App = () => (
                     <a href="#main" className="skip-link">
                         Skip to content
                     </a>
+                    <Cursor />
                     <Nav />
                     <TraceRail />
                     <main id="main">
