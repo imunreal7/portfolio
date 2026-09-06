@@ -3,7 +3,6 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { experiences, projects, recommendations } from "../constants";
 import { skillNodes } from "../data/skills";
 
-const KEY = "ad-booted";
 const LINE_DELAY = 190;
 const LINE_START = 160;
 const HOLD = 420;
@@ -17,37 +16,22 @@ const LINES = [
     `system online`,
 ];
 
-const readBooted = () => {
-    try {
-        return Boolean(sessionStorage.getItem(KEY));
-    } catch (_) {
-        return true; // storage blocked: skip the intro rather than trap the visitor
-    }
-};
-
 const BootContext = createContext(true);
 
 /** True once the boot overlay has lifted; entrance animations should wait for it. */
 export const useBooted = () => useContext(BootContext);
 
-// Once-per-session boot sequence. Children render underneath but key animations are gated
-// on `useBooted()` so first-time visitors actually see the hero come in.
+// Boot sequence played on every load and refresh. Children render underneath but key
+// animations are gated on `useBooted()` so the hero always comes in after the overlay lifts.
 export const BootProvider = ({ children }) => {
     const reduce = useReducedMotion();
-    const [booted, setBooted] = useState(() => readBooted() || false);
+    const [booted, setBooted] = useState(false);
     const [count, setCount] = useState(0);
 
     const finish = useCallback(() => setBooted(true), []);
 
     useEffect(() => {
-        if (booted) {
-            try {
-                sessionStorage.setItem(KEY, "1");
-            } catch (_) {
-                /* storage blocked: the intro simply plays again next load */
-            }
-            return undefined;
-        }
+        if (booted) return undefined;
         if (reduce) {
             finish();
             return undefined;

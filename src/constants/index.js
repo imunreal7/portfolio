@@ -218,16 +218,6 @@ const languages = [
 // Quotes are verbatim excerpts from LinkedIn recommendations (Ajay's has one duplicated word removed).
 const recommendations = [
     {
-        quote: "Aman combines deep system-level thinking with strong coding skills. He led the Social Planner system, which helped scale the system to 10M+ posts per month without downtime. Beyond his technical expertise in Node.js, NestJS, and GCP, Aman stands out for his calm problem-solving, clear communication, and genuine leadership.",
-        name: "Ajay Reddy",
-        designation: "Lead Software Engineer",
-        company: "HighLevel",
-        relation: "Senior colleague at HighLevel",
-        date: "Nov 2025",
-        image: null,
-        linkedIn: "https://www.linkedin.com/in/ajay-reddy-38835b168/",
-    },
-    {
         quote: "Aman stood out immediately for his hunger for knowledge and sharp intelligence. He consistently took ownership, asked the right questions, and proactively drove solutions when the path forward wasn't obvious. He combines technical depth with strong communication and reliability.",
         name: "Cristian Santibanez",
         designation: "Senior AI Advisor",
@@ -248,16 +238,6 @@ const recommendations = [
         linkedIn: "https://www.linkedin.com/in/mauro-romano-9098469/",
     },
     {
-        quote: "Aman brought deep expertise across the stack, contributing clean, scalable code and innovative solutions to complex problems. As our team lead, Aman effectively coordinated efforts, kept the team aligned with project goals, and created a collaborative environment that encouraged growth and accountability.",
-        name: "Mubasher M.",
-        designation: "Development Team Lead",
-        company: "Turing",
-        relation: "Teammate on the Lucy platform",
-        date: "Apr 2025",
-        image: null,
-        linkedIn: "https://www.linkedin.com/in/expert-mernstack-developer/",
-    },
-    {
         quote: "He is a great colleague and a team leader. His expertise in backend development, AWS and container technologies helped the project and the team to achieve objectives in record speed.",
         name: "Venugopal Chavate",
         designation: "Lead Software Engineer",
@@ -268,14 +248,34 @@ const recommendations = [
         linkedIn: "https://www.linkedin.com/in/venugopalvc/",
     },
     {
+        quote: "Aman combines deep system-level thinking with strong coding skills. He led the Social Planner system, which helped scale the system to 10M+ posts per month without downtime. Beyond his technical expertise in Node.js, NestJS, and GCP, Aman stands out for his calm problem-solving, clear communication, and genuine leadership.",
+        name: "Ajay Reddy",
+        designation: "Lead Software Engineer",
+        company: "HighLevel",
+        relation: "Senior colleague at HighLevel",
+        date: "Nov 2025",
+        image: "../assets/pictures/ajay.jpeg",
+        linkedIn: "https://www.linkedin.com/in/ajay-reddy-38835b168/",
+    },
+    {
         quote: "Aman is incredibly skilled in backend technologies and demonstrates a deep understanding of complex systems and problem-solving techniques. His ability to write clean, efficient, and scalable code has been instrumental in the success of our projects.",
         name: "Abdul Raffay",
-        designation: "Software Engineer",
+        designation: "Lead Software Engineer",
         company: "Backend & Full Stack",
         relation: "Senior colleague on the same team",
         date: "Mar 2025",
-        image: null,
+        image: "../assets/pictures/raffay.jpeg",
         linkedIn: "https://www.linkedin.com/in/theabdulraffay/",
+    },
+    {
+        quote: "Aman brought deep expertise across the stack, contributing clean, scalable code and innovative solutions to complex problems. As our team lead, Aman effectively coordinated efforts, kept the team aligned with project goals, and created a collaborative environment that encouraged growth and accountability.",
+        name: "Mubasher M.",
+        designation: "Development Team Lead",
+        company: "Turing",
+        relation: "Teammate on the Lucy platform",
+        date: "Apr 2025",
+        image: null,
+        linkedIn: "https://www.linkedin.com/in/expert-mernstack-developer/",
     },
 ];
 

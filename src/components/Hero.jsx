@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowDown, FiCommand, FiFileText, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import PipelineCanvas from "./PipelineCanvas";
+import Constellation from "./Constellation";
 import ErrorBoundary from "./ErrorBoundary";
 import Button from "./ui/Button";
 import { usePalette } from "./CommandPalette";
@@ -98,7 +99,7 @@ const LiveThroughput = ({ enabled }) => {
                 hidden: { opacity: 0 },
                 show: { opacity: 1, transition: { delay: 1.1, duration: 0.8 } },
             }}
-            className="mt-12 grid max-w-xl grid-cols-2 gap-6 border-t border-line pt-6"
+            className="mt-10 grid max-w-xl grid-cols-2 gap-6 border-t border-line pt-6"
             aria-live="off"
         >
             <Counter
@@ -120,10 +121,17 @@ const LiveThroughput = ({ enabled }) => {
 };
 
 const badges = [
-    { text: "25M+ posts / mo", pos: "-left-6 top-6 lg:-left-16", delay: 0 },
+    { text: "25M+ posts / mo", pos: "-left-[5.25rem] top-8 lg:-left-[3.75rem]", delay: 0 },
     { text: "99.2% uptime", pos: "-right-4 top-1/3 lg:-right-14", delay: 1.2 },
     { text: "6M+ accounts", pos: "-left-2 bottom-8 lg:-left-10", delay: 2.1 },
 ];
+
+// A glowing dot pinned to an orbit ring; the ring's own rotation carries it around.
+const Satellite = ({ className }) => (
+    <span
+        className={`absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full ${className}`}
+    />
+);
 
 const Portrait = () => (
     <motion.div
@@ -133,8 +141,13 @@ const Portrait = () => (
         }}
         className="relative mx-auto hidden h-[300px] w-[300px] sm:block lg:h-[380px] lg:w-[380px]"
     >
-        <div className="spin-slow absolute inset-0 rounded-full border border-dashed border-acc/30" />
-        <div className="spin-slow-rev absolute inset-6 rounded-full border border-line" />
+        <div className="spin-slow absolute inset-0 rounded-full border border-dashed border-acc/30">
+            <Satellite className="left-1/2 top-0 bg-acc shadow-[0_0_14px_3px_rgba(125,249,208,0.55)]" />
+            <Satellite className="left-0 top-1/2 h-1.5 w-1.5 bg-acc2 shadow-[0_0_10px_2px_rgba(167,139,250,0.55)]" />
+        </div>
+        <div className="spin-slow-rev absolute inset-6 rounded-full border border-line">
+            <Satellite className="bottom-0 left-1/2 bg-sky shadow-[0_0_12px_2px_rgba(96,165,250,0.55)]" />
+        </div>
         <div className="absolute inset-6 rounded-full bg-[conic-gradient(from_180deg,rgba(125,249,208,0.25),transparent_30%,rgba(167,139,250,0.25)_60%,transparent_80%)] blur-2xl" />
         <img
             src={profile.avatar}
@@ -161,24 +174,26 @@ const Hero = () => {
     const booted = useBooted();
 
     return (
-        <section id="top" className="relative min-h-[100svh] overflow-hidden">
-            <ErrorBoundary>
-                <PipelineCanvas />
-            </ErrorBoundary>
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,7,12,0.55)_0%,rgba(5,7,12,0.2)_35%,#05070c_85%)] sm:bg-[radial-gradient(ellipse_at_center,transparent_30%,#05070c_85%)]" />
+        <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden">
+            {/* Slow ambient mesh across the whole hero; softened behind the copy by its mask. */}
+            <div className="absolute inset-0">
+                <ErrorBoundary>
+                    <Constellation />
+                </ErrorBoundary>
+            </div>
 
             {/* Every entrance below waits for the boot overlay to lift. */}
             <motion.div
                 initial="hidden"
                 animate={booted ? "show" : "hidden"}
-                className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pb-28 pt-28 sm:px-10"
+                className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 pb-12 pt-28 sm:px-10"
             >
                 <motion.div
                     variants={{
                         hidden: { opacity: 0, y: -8 },
                         show: { opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.6 } },
                     }}
-                    className="mb-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted"
+                    className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted"
                 >
                     <span className="flex items-center gap-2">
                         <span className="pulse-dot" /> system online
@@ -274,9 +289,16 @@ const Hero = () => {
                 </div>
             </motion.div>
 
+            {/* The publishing pipeline runs in its own strip below the copy, so it never competes with it. */}
+            <div className="relative h-[150px] shrink-0 sm:h-[180px]">
+                <ErrorBoundary>
+                    <PipelineCanvas />
+                </ErrorBoundary>
+            </div>
+
             <a
                 href="#about"
-                className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-dim transition-colors hover:text-acc"
+                className="absolute bottom-4 right-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-dim transition-colors hover:text-acc sm:right-10"
             >
                 <motion.span
                     animate={{ y: [0, 5, 0] }}

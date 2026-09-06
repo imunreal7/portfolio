@@ -5,14 +5,16 @@ import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
 import colors from "../theme/colors";
 
 export const STAGE_X = [0.12, 0.38, 0.62, 0.88];
-const LANES = 7;
-const TARGET_PARTICLES = 110;
-const SPAWN_PER_SEC = 26;
-const SPEED = { min: 55, max: 105 };
+const LANES = 5;
+const TARGET_PARTICLES = 100;
+const SPAWN_PER_SEC = 22;
+const SPEED = { min: 45, max: 85 };
 const CURSOR_RADIUS = 150;
 const CURSOR_FORCE = 420;
 const BG_FADE = "rgba(5, 7, 12, 0.22)";
 const PALETTE = [colors.acc, colors.acc2, colors.sky, colors.acc3, colors.danger, colors.haze];
+
+const EDGE_FADE = "linear-gradient(to bottom, transparent, black 35%)";
 
 const rand = (min, max) => min + Math.random() * (max - min);
 
@@ -38,7 +40,7 @@ const PipelineCanvas = () => {
 
         // Narrow screens get proportionally fewer particles and smaller flashes.
         const density = () => Math.min(1, w / 1100);
-        const laneY = (i) => h * 0.24 + (h * 0.52 * i) / (LANES - 1);
+        const laneY = (i) => h * 0.42 + (h * 0.5 * i) / (LANES - 1);
 
         const resize = () => {
             ({ w, h } = fitCanvas(canvas, ctx));
@@ -57,7 +59,8 @@ const PipelineCanvas = () => {
                 vy: 0,
                 phase: rand(0, Math.PI * 2),
                 color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
-                stage: 0,
+                // Particles seeded mid-canvas have already passed the stages to their left.
+                stage: STAGE_X.filter((fx) => fx * w <= x).length,
                 size: rand(1.2, 2.4),
             });
         };
@@ -69,18 +72,18 @@ const PipelineCanvas = () => {
                 ctx.strokeStyle = "rgba(255,255,255,0.05)";
                 ctx.setLineDash([2, 10]);
                 ctx.beginPath();
-                ctx.moveTo(x, h * 0.16);
-                ctx.lineTo(x, h * 0.84);
+                ctx.moveTo(x, h * 0.3);
+                ctx.lineTo(x, h);
                 ctx.stroke();
                 ctx.restore();
 
                 const pulse = 0.5 + 0.5 * Math.sin(t / 700 + i);
                 ctx.beginPath();
-                ctx.arc(x, h * 0.5, 3 + pulse * 2, 0, Math.PI * 2);
+                ctx.arc(x, h * 0.67, 3 + pulse * 2, 0, Math.PI * 2);
                 ctx.fillStyle = "rgba(125,249,208,0.55)";
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(x, h * 0.5, 14 + pulse * 10, 0, Math.PI * 2);
+                ctx.arc(x, h * 0.67, 14 + pulse * 10, 0, Math.PI * 2);
                 ctx.strokeStyle = `rgba(125,249,208,${0.18 - pulse * 0.12})`;
                 ctx.lineWidth = 1;
                 ctx.stroke();
@@ -120,7 +123,7 @@ const PipelineCanvas = () => {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
-            ctx.globalAlpha = p.stage === 0 ? 0.55 : 0.9;
+            ctx.globalAlpha = p.stage === 0 ? 0.6 : 0.95;
             ctx.fill();
             ctx.globalAlpha = 1;
         };
@@ -169,11 +172,16 @@ const PipelineCanvas = () => {
             drawFlashes(dt);
         };
 
+        // Fill the pipeline up front so it never starts as an empty strip.
+        const seed = () => {
+            for (let i = 0; i < 70 * density(); i += 1) spawn(rand(0, w));
+        };
+
         const drawStatic = () => {
             ctx.fillStyle = colors.bg;
             ctx.fillRect(0, 0, w, h);
             drawStages(0);
-            for (let i = 0; i < 70 * density(); i += 1) spawn(rand(0, w));
+            seed();
             particles.forEach(drawParticle);
         };
 
@@ -197,8 +205,12 @@ const PipelineCanvas = () => {
         host.addEventListener("pointermove", onMove);
         host.addEventListener("pointerleave", onLeave);
 
-        if (reduce) drawStatic();
-        else frame = requestAnimationFrame(step);
+        if (reduce) {
+            drawStatic();
+        } else {
+            seed();
+            frame = requestAnimationFrame(step);
+        }
 
         return () => {
             running = false;
@@ -212,9 +224,14 @@ const PipelineCanvas = () => {
 
     return (
         <>
-            <canvas ref={canvasRef} className="absolute inset-0" aria-hidden="true" />
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0"
+                style={{ WebkitMaskImage: EDGE_FADE, maskImage: EDGE_FADE }}
+                aria-hidden="true"
+            />
             {/* Stage labels aligned to the canvas stage columns */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-[7%] hidden md:block">
+            <div className="pointer-events-none absolute inset-x-0 top-2 hidden sm:block">
                 {pipeline.map((stage, i) => (
                     <div
                         key={stage.id}
