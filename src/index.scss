@@ -3,17 +3,9 @@
 @tailwind utilities;
 
 :root {
-    --bg: theme("colors.bg");
-    --surface: theme("colors.surface");
-    --raised: theme("colors.raised");
-    --line: theme("colors.line");
-    --ink: theme("colors.ink");
-    --muted: theme("colors.muted");
-    --acc: theme("colors.acc");
-    --acc2: theme("colors.acc2");
-    --acc3: theme("colors.acc3");
+    /* Colour variables (--bg, --acc, --c-acc …) and color-scheme are emitted per theme by the
+       plugin in tailwind.config.js from src/theme/themes.js. */
     --nav-h: 72px;
-    color-scheme: dark;
 }
 
 html {
@@ -45,8 +37,8 @@ body {
 }
 
 ::selection {
-    background: rgba(125, 249, 208, 0.3);
-    color: #fff;
+    background: rgb(var(--c-acc) / 0.3);
+    color: var(--ink);
 }
 
 *:focus-visible {
@@ -62,8 +54,8 @@ section[id] {
 /* ---------- backgrounds ---------- */
 .grid-bg {
     background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        linear-gradient(to right, rgb(var(--c-ink) / 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(var(--c-ink) / 0.035) 1px, transparent 1px);
     background-size: 64px 64px;
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
@@ -90,7 +82,7 @@ section[id] {
 }
 
 .text-gradient {
-    background: linear-gradient(120deg, var(--acc) 0%, #b8f5ff 40%, var(--acc2) 100%);
+    background: linear-gradient(120deg, var(--acc) 0%, var(--haze) 40%, var(--acc2) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -134,8 +126,8 @@ section[id] {
     padding: 1px;
     background: radial-gradient(
         280px circle at var(--mx, 50%) var(--my, 50%),
-        rgba(125, 249, 208, 0.7),
-        rgba(167, 139, 250, 0.25) 40%,
+        rgb(var(--c-acc) / 0.7),
+        rgb(var(--c-acc2) / 0.25) 40%,
         transparent 70%
     );
     -webkit-mask:
@@ -155,7 +147,7 @@ section[id] {
     border-radius: inherit;
     background: radial-gradient(
         360px circle at var(--mx, 50%) var(--my, 50%),
-        rgba(125, 249, 208, 0.07),
+        rgb(var(--c-acc) / 0.07),
         transparent 60%
     );
     opacity: 0;
@@ -241,7 +233,7 @@ section[id] {
     width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #1c2434;
+    background: var(--raised);
     border-radius: 10px;
     border: 2px solid var(--bg);
 }

@@ -10,32 +10,37 @@ import {
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import SectionHead from "./ui/SectionHead";
 import { projects } from "../constants";
-import colors from "../theme/colors";
+import { useTheme } from "./Theme";
 import { EASE } from "../utils/motion";
 
 const isRepo = (url) => /github\.com/.test(url || "");
 
-const TAG_COLOR = {
-    "blue-text-gradient": colors.sky,
-    "green-text-gradient": colors.acc,
-    "pink-text-gradient": colors.danger,
-    "orange-text-gradient": colors.acc3,
-    "purple-text-gradient": colors.acc2,
+// Tag colour names from the constants file map to palette keys, so every theme recolours them.
+const TAG_TONE = {
+    "blue-text-gradient": "sky",
+    "green-text-gradient": "acc",
+    "pink-text-gradient": "danger",
+    "orange-text-gradient": "acc3",
+    "purple-text-gradient": "acc2",
 };
+const toneOf = (palette, tag) => palette[TAG_TONE[tag.color]];
 
-const TagList = ({ tags }) => (
-    <div className="flex flex-wrap gap-2">
-        {tags.map((t) => (
-            <span
-                key={t.name}
-                className="rounded-full border px-2.5 py-0.5 font-mono text-[11px]"
-                style={{ color: TAG_COLOR[t.color], borderColor: `${TAG_COLOR[t.color]}55` }}
-            >
-                {t.name}
-            </span>
-        ))}
-    </div>
-);
+const TagList = ({ tags }) => {
+    const { palette } = useTheme();
+    return (
+        <div className="flex flex-wrap gap-2">
+            {tags.map((t) => (
+                <span
+                    key={t.name}
+                    className="rounded-full border px-2.5 py-0.5 font-mono text-[11px]"
+                    style={{ color: toneOf(palette, t), borderColor: `${toneOf(palette, t)}55` }}
+                >
+                    {t.name}
+                </span>
+            ))}
+        </div>
+    );
+};
 
 // Live and source links, or an honest note when a project has neither.
 const ProjectLinks = ({ project, children }) => {
@@ -75,14 +80,17 @@ const ProjectLinks = ({ project, children }) => {
 
 // Projects without a screenshot get a generated cover built from their tag colours.
 const Cover = ({ project, className }) => {
+    const { palette } = useTheme();
     const [a, b] = [
-        TAG_COLOR[project.tags[0].color],
-        TAG_COLOR[(project.tags[1] || project.tags[0]).color],
+        toneOf(palette, project.tags[0]),
+        toneOf(palette, project.tags[1] || project.tags[0]),
     ];
     return (
         <div
             className={`${className} relative flex items-end overflow-hidden p-6`}
-            style={{ background: `linear-gradient(135deg, ${a}22, ${colors.surface} 45%, ${b}22)` }}
+            style={{
+                background: `linear-gradient(135deg, ${a}22, ${palette.surface} 45%, ${b}22)`,
+            }}
             aria-hidden="true"
         >
             <div
@@ -129,6 +137,7 @@ const MaybeLink = ({ href, className, children }) =>
 const Preview = ({ project }) => {
     const ref = useRef(null);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
     const mx = useMotionValue(0.5);
     const my = useMotionValue(0.5);
     const rx = useSpring(useTransform(my, [0, 1], [7, -7]), { stiffness: 150, damping: 20 });
@@ -180,7 +189,7 @@ const Preview = ({ project }) => {
                 <div
                     className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl opacity-60 blur-3xl"
                     style={{
-                        background: `radial-gradient(circle at 30% 30%, ${TAG_COLOR[project.tags[0].color]}33, transparent 60%)`,
+                        background: `radial-gradient(circle at 30% 30%, ${toneOf(palette, project.tags[0])}33, transparent 60%)`,
                     }}
                 />
             </motion.div>

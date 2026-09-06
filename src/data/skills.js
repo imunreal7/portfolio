@@ -1,5 +1,4 @@
 import { technologies, tools } from "../constants";
-import colors from "../theme/colors";
 
 // Domain grouping is presentational. Names and icons come from the constants file.
 const DOMAIN_OF = {
@@ -36,14 +35,15 @@ const DOMAIN_OF = {
     Git: "Tooling",
 };
 
+// `tone` names a palette key so every theme colours the domains with its own accents.
 export const DOMAINS = [
-    { id: "Languages", color: colors.acc3 },
-    { id: "Backend", color: colors.acc },
-    { id: "Frontend", color: colors.sky },
-    { id: "Cloud", color: colors.acc2 },
-    { id: "Data", color: colors.danger },
-    { id: "AI", color: colors.cyan },
-    { id: "Tooling", color: colors.slate },
+    { id: "Languages", tone: "acc3" },
+    { id: "Backend", tone: "acc" },
+    { id: "Frontend", tone: "sky" },
+    { id: "Cloud", tone: "acc2" },
+    { id: "Data", tone: "danger" },
+    { id: "AI", tone: "cyan" },
+    { id: "Tooling", tone: "slate" },
 ];
 
 // Named on the resume or LinkedIn profile but without a logo asset: rendered as monogram nodes.

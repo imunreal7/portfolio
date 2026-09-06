@@ -85,7 +85,7 @@ const Recommendations = () => {
                                     <footer className="mt-8 flex items-center gap-4">
                                         <Avatar
                                             person={rec}
-                                            className="h-12 w-12 rounded-full object-cover ring-1 ring-white/10"
+                                            className="h-12 w-12 rounded-full object-cover ring-1 ring-ink/10"
                                         />
                                         <div>
                                             <a

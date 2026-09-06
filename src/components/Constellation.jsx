@@ -1,14 +1,15 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
-import colors from "../theme/colors";
+import { hexAlpha } from "../theme/palette";
+import { useTheme } from "./Theme";
 
 const NODE_SPACING = 130; // one node per ~130px square keeps density even across viewports
 const LINK_DIST = 150;
 const CURSOR_DIST = 240;
 const CURSOR_PULL = 36; // px a node leans toward the pointer at zero distance
 const DRIFT = { min: 5, max: 14 }; // px/s: slow enough to sit calmly behind the copy
-const PALETTE = [colors.acc, colors.acc2, colors.sky, colors.haze];
+const tones = (p) => [p.acc, p.acc2, p.sky, p.haze];
 
 // Softens the mesh behind the headline and copy so the words stay easy to read.
 const TEXT_MASK =
@@ -16,20 +17,17 @@ const TEXT_MASK =
 
 const rand = (min, max) => min + Math.random() * (max - min);
 
-const hexAlpha = (hex, a) => {
-    const n = parseInt(hex.slice(1), 16);
-    return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
-};
-
 // A slowly drifting mesh of nodes: connected services in a distributed system.
 // Nodes near the cursor light up and link to it, but the drift itself never hurries.
 const Constellation = () => {
     const canvasRef = useRef(null);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
+        const PALETTE = tones(palette);
         let w = 0;
         let h = 0;
         let running = true;
@@ -90,7 +88,7 @@ const Constellation = () => {
                     const dy = a.y - b.y;
                     const d = Math.hypot(dx, dy);
                     if (d > LINK_DIST) continue;
-                    ctx.strokeStyle = `rgba(184,245,255,${(1 - d / LINK_DIST) * 0.22})`;
+                    ctx.strokeStyle = hexAlpha(palette.haze, (1 - d / LINK_DIST) * 0.22);
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
                     ctx.lineTo(b.x, b.y);
@@ -103,14 +101,14 @@ const Constellation = () => {
         const drawCursor = (pts, t) => {
             if (mouse.x < -1000) return;
             const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
-            glow.addColorStop(0, hexAlpha(colors.acc, 0.16));
-            glow.addColorStop(1, hexAlpha(colors.acc, 0));
+            glow.addColorStop(0, hexAlpha(palette.acc, 0.16));
+            glow.addColorStop(1, hexAlpha(palette.acc, 0));
             ctx.fillStyle = glow;
             ctx.fillRect(mouse.x - 180, mouse.y - 180, 360, 360);
 
             pts.forEach((p) => {
                 if (p.d > CURSOR_DIST) return;
-                ctx.strokeStyle = hexAlpha(colors.acc, (1 - p.d / CURSOR_DIST) * 0.55);
+                ctx.strokeStyle = hexAlpha(palette.acc, (1 - p.d / CURSOR_DIST) * 0.55);
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(mouse.x, mouse.y);
@@ -120,11 +118,11 @@ const Constellation = () => {
             const pulse = 0.5 + 0.5 * Math.sin(t / 500);
             ctx.beginPath();
             ctx.arc(mouse.x, mouse.y, 10 + pulse * 6, 0, Math.PI * 2);
-            ctx.strokeStyle = hexAlpha(colors.acc, 0.6 - pulse * 0.3);
+            ctx.strokeStyle = hexAlpha(palette.acc, 0.6 - pulse * 0.3);
             ctx.stroke();
             ctx.beginPath();
             ctx.arc(mouse.x, mouse.y, 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = colors.acc;
+            ctx.fillStyle = palette.acc;
             ctx.fill();
         };
 
@@ -202,7 +200,7 @@ const Constellation = () => {
             window.removeEventListener("pointerleave", onLeave);
             document.removeEventListener("pointerleave", onLeave);
         };
-    }, [reduce]);
+    }, [reduce, palette]);
 
     return (
         <canvas

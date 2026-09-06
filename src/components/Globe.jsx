@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
-import colors from "../theme/colors";
+import { hexAlpha } from "../theme/palette";
+import { useTheme } from "./Theme";
 
 const POINTS = 520;
 const SPIN = 0.16; // rad/s
@@ -10,12 +11,7 @@ const ARC_EVERY = 0.4; // seconds between launches
 const ARC_LIFE = 1.6; // seconds an arc takes to land
 const ARC_LIFT = 0.35; // how far an arc bows outside the sphere, as a fraction of radius
 const CAMERA = 3.2; // camera distance in radii
-const PALETTE = [colors.acc, colors.acc2, colors.sky, colors.cyan];
-
-const hexAlpha = (hex, a) => {
-    const n = parseInt(hex.slice(1), 16);
-    return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
-};
+const tones = (p) => [p.acc, p.acc2, p.sky, p.cyan];
 
 // Evenly spread unit vectors (Fibonacci sphere).
 const spherePoints = (n) =>
@@ -58,10 +54,12 @@ const slerp = (a, b, t) => {
 const Globe = ({ coreRadius = 0.72 }) => {
     const canvasRef = useRef(null);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
+        const PALETTE = tones(palette);
         const base = spherePoints(POINTS);
         const arcs = [];
         const rings = [];
@@ -112,7 +110,7 @@ const Globe = ({ coreRadius = 0.72 }) => {
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, 0.6 + depth * 1.3, 0, Math.PI * 2);
                 // Points passing in front of the photo stay faint so the face reads clearly.
-                ctx.fillStyle = hexAlpha(colors.haze, onFace ? 0.22 : 0.15 + depth * 0.65);
+                ctx.fillStyle = hexAlpha(palette.haze, onFace ? 0.22 : 0.15 + depth * 0.65);
                 ctx.fill();
             });
         };
@@ -228,7 +226,7 @@ const Globe = ({ coreRadius = 0.72 }) => {
             stopVisibility();
             window.removeEventListener("pointermove", onMove);
         };
-    }, [reduce, coreRadius]);
+    }, [reduce, coreRadius, palette]);
 
     return <canvas ref={canvasRef} className="absolute inset-0" aria-hidden="true" />;
 };

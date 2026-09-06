@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { DOMAINS, skillNodes } from "../data/skills";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
-import colors from "../theme/colors";
+import { hexAlpha } from "../theme/palette";
+import { useTheme } from "./Theme";
 
-const NODE_FILL = colors.raised;
 const HUB_PULL = 1.1;
 const FOCUS_PULL = 3.2;
 const EXILE_PULL = 2.8;
@@ -28,6 +28,7 @@ const SkillGraph = ({ filter }) => {
     const canvasRef = useRef(null);
     const filterRef = useRef(filter);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
 
     useEffect(() => {
         filterRef.current = filter;
@@ -53,7 +54,7 @@ const SkillGraph = ({ filter }) => {
                 {
                     x: 0,
                     y: 0,
-                    color: d.color,
+                    color: palette[d.tone],
                     label: d.id,
                     members: nodes.filter((n) => n.domain === d.id),
                 },
@@ -175,10 +176,10 @@ const SkillGraph = ({ filter }) => {
             ctx.globalAlpha = alpha;
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-            ctx.fillStyle = NODE_FILL;
+            ctx.fillStyle = palette.raised;
             ctx.fill();
             ctx.lineWidth = isHovered ? 2 : 1;
-            ctx.strokeStyle = isHovered ? "#ffffff" : color;
+            ctx.strokeStyle = isHovered ? palette.ink : color;
             ctx.stroke();
             if (n.img) {
                 ctx.save();
@@ -196,7 +197,7 @@ const SkillGraph = ({ filter }) => {
                 ctx.fillText(n.name.slice(0, 2), n.x, n.y + 1);
             }
             if (isHovered || (filterRef.current === n.domain && n.weight === 3)) {
-                ctx.fillStyle = isHovered ? "#ffffff" : "rgba(230,235,242,0.75)";
+                ctx.fillStyle = isHovered ? palette.ink : hexAlpha(palette.ink, 0.75);
                 ctx.font = `500 11px ${FONT}`;
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
@@ -221,7 +222,7 @@ const SkillGraph = ({ filter }) => {
 
         const draw = () => {
             const active = filterRef.current;
-            ctx.fillStyle = colors.bg;
+            ctx.fillStyle = palette.bg;
             ctx.fillRect(0, 0, w, h);
             if (!active) drawHubLabels();
             nodes.forEach((n) => {
@@ -332,7 +333,7 @@ const SkillGraph = ({ filter }) => {
             canvas.removeEventListener("pointercancel", onUp);
             canvas.removeEventListener("pointerleave", onLeave);
         };
-    }, [reduce]);
+    }, [reduce, palette]);
 
     // Under reduced motion the filter change needs an explicit repaint since no loop is running.
     useEffect(() => {

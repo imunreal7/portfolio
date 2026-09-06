@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { pipeline } from "../data/profile";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
-import colors from "../theme/colors";
+import { hexAlpha } from "../theme/palette";
+import { useTheme } from "./Theme";
 
 export const STAGE_X = [0.12, 0.38, 0.62, 0.88];
 const LANES = 5;
@@ -11,8 +12,8 @@ const SPAWN_PER_SEC = 22;
 const SPEED = { min: 45, max: 85 };
 const CURSOR_RADIUS = 150;
 const CURSOR_FORCE = 420;
-const BG_FADE = "rgba(5, 7, 12, 0.22)";
-const PALETTE = [colors.acc, colors.acc2, colors.sky, colors.acc3, colors.danger, colors.haze];
+const TRAIL_FADE = 0.22; // how much of the previous frame survives each step
+const tones = (p) => [p.acc, p.acc2, p.sky, p.acc3, p.danger, p.haze];
 
 const EDGE_FADE = "linear-gradient(to bottom, transparent, black 35%)";
 
@@ -23,10 +24,12 @@ const rand = (min, max) => min + Math.random() * (max - min);
 const PipelineCanvas = () => {
     const canvasRef = useRef(null);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
+        const PALETTE = tones(palette);
         let w = 0;
         let h = 0;
         let running = true;
@@ -44,7 +47,7 @@ const PipelineCanvas = () => {
 
         const resize = () => {
             ({ w, h } = fitCanvas(canvas, ctx));
-            ctx.fillStyle = colors.bg;
+            ctx.fillStyle = palette.bg;
             ctx.fillRect(0, 0, w, h);
         };
 
@@ -69,7 +72,7 @@ const PipelineCanvas = () => {
             STAGE_X.forEach((fx, i) => {
                 const x = fx * w;
                 ctx.save();
-                ctx.strokeStyle = "rgba(255,255,255,0.05)";
+                ctx.strokeStyle = hexAlpha(palette.ink, 0.05);
                 ctx.setLineDash([2, 10]);
                 ctx.beginPath();
                 ctx.moveTo(x, h * 0.3);
@@ -80,11 +83,11 @@ const PipelineCanvas = () => {
                 const pulse = 0.5 + 0.5 * Math.sin(t / 700 + i);
                 ctx.beginPath();
                 ctx.arc(x, h * 0.67, 3 + pulse * 2, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(125,249,208,0.55)";
+                ctx.fillStyle = hexAlpha(palette.acc, 0.55);
                 ctx.fill();
                 ctx.beginPath();
                 ctx.arc(x, h * 0.67, 14 + pulse * 10, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(125,249,208,${0.18 - pulse * 0.12})`;
+                ctx.strokeStyle = hexAlpha(palette.acc, 0.18 - pulse * 0.12);
                 ctx.lineWidth = 1;
                 ctx.stroke();
             });
@@ -154,7 +157,7 @@ const PipelineCanvas = () => {
             const dt = Math.min(0.05, (now - last) / 1000);
             last = now;
 
-            ctx.fillStyle = BG_FADE;
+            ctx.fillStyle = hexAlpha(palette.bg, TRAIL_FADE);
             ctx.fillRect(0, 0, w, h);
             drawStages(now);
 
@@ -178,7 +181,7 @@ const PipelineCanvas = () => {
         };
 
         const drawStatic = () => {
-            ctx.fillStyle = colors.bg;
+            ctx.fillStyle = palette.bg;
             ctx.fillRect(0, 0, w, h);
             drawStages(0);
             seed();
@@ -220,7 +223,7 @@ const PipelineCanvas = () => {
             host.removeEventListener("pointermove", onMove);
             host.removeEventListener("pointerleave", onLeave);
         };
-    }, [reduce]);
+    }, [reduce, palette]);
 
     return (
         <>

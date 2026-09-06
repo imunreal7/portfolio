@@ -137,11 +137,11 @@ const Portrait = () => (
         }}
         className="relative mx-auto hidden h-[300px] w-[300px] sm:block lg:h-[380px] lg:w-[380px]"
     >
-        <div className="absolute inset-6 rounded-full bg-[conic-gradient(from_180deg,rgba(125,249,208,0.25),transparent_30%,rgba(167,139,250,0.25)_60%,transparent_80%)] blur-2xl" />
+        <div className="absolute inset-6 rounded-full bg-[conic-gradient(from_180deg,rgb(var(--c-acc)/0.25),transparent_30%,rgb(var(--c-acc2)/0.25)_60%,transparent_80%)] blur-2xl" />
         <img
             src={profile.avatar}
             alt={profile.name}
-            className="absolute inset-10 h-[calc(100%-5rem)] w-[calc(100%-5rem)] rounded-full object-cover ring-1 ring-white/10"
+            className="absolute inset-10 h-[calc(100%-5rem)] w-[calc(100%-5rem)] rounded-full object-cover ring-1 ring-ink/10"
             width={500}
             height={500}
         />

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { watchResize, watchVisibility } from "../utils/canvas";
-import colors from "../theme/colors";
+import { hexToVec } from "../theme/palette";
+import { useTheme } from "./Theme";
 
 // Rendered at a fraction of the screen resolution: aurora is soft by nature, and the
 // browser's upscale adds a free blur while cutting the fragment work to a quarter.
@@ -83,11 +84,6 @@ void main() {
 }
 `;
 
-const hexToVec = (hex) => {
-    const n = parseInt(hex.slice(1), 16);
-    return [(n >> 16) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
-};
-
 const compile = (gl, type, src) => {
     const sh = gl.createShader(type);
     gl.shaderSource(sh, src);
@@ -102,6 +98,7 @@ const compile = (gl, type, src) => {
 const Aurora = () => {
     const canvasRef = useRef(null);
     const reduce = useReducedMotion();
+    const { palette } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -135,9 +132,9 @@ const Aurora = () => {
         gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
         const u = (name) => gl.getUniformLocation(program, name);
-        gl.uniform3fv(u("u_c1"), hexToVec(colors.acc));
-        gl.uniform3fv(u("u_c2"), hexToVec(colors.acc2));
-        gl.uniform3fv(u("u_c3"), hexToVec(colors.sky));
+        gl.uniform3fv(u("u_c1"), hexToVec(palette.acc));
+        gl.uniform3fv(u("u_c2"), hexToVec(palette.acc2));
+        gl.uniform3fv(u("u_c3"), hexToVec(palette.sky));
         const uRes = u("u_res");
         const uTime = u("u_time");
         const uMouse = u("u_mouse");
@@ -201,7 +198,7 @@ const Aurora = () => {
             gl.deleteBuffer(buf);
             gl.deleteProgram(program);
         };
-    }, [reduce]);
+    }, [reduce, palette]);
 
     return <canvas ref={canvasRef} className="absolute inset-0" aria-hidden="true" />;
 };

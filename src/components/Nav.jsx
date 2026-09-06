@@ -4,6 +4,7 @@ import { FiCommand, FiMenu, FiX } from "react-icons/fi";
 import { navLinks } from "../constants";
 import { profile } from "../data/profile";
 import { usePalette } from "./CommandPalette";
+import ThemeSwitcher from "./ThemeSwitcher";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { useScrollProgress } from "../hooks/useScrollProgress";
 
@@ -85,6 +86,9 @@ const Nav = () => {
                     </ul>
 
                     <div className="flex items-center gap-2">
+                        <span className="hidden sm:block">
+                            <ThemeSwitcher />
+                        </span>
                         <button
                             type="button"
                             onClick={open}
@@ -140,6 +144,10 @@ const Nav = () => {
                                     >
                                         <FiCommand /> command palette
                                     </button>
+                                </li>
+                                <li className="border-t border-line pt-3">
+                                    <p className="eyebrow mb-2">theme</p>
+                                    <ThemeSwitcher inline onPick={() => setMenu(false)} />
                                 </li>
                             </ul>
                         </motion.div>

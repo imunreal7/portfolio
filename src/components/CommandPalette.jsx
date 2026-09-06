@@ -8,15 +8,24 @@ import {
     useState,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiSearch, FiCornerDownLeft, FiExternalLink, FiHash, FiCopy } from "react-icons/fi";
+import {
+    FiSearch,
+    FiCornerDownLeft,
+    FiExternalLink,
+    FiHash,
+    FiCopy,
+    FiDroplet,
+} from "react-icons/fi";
 import { navLinks } from "../constants";
 import { links, profile } from "../data/profile";
 import { EASE } from "../utils/motion";
+import { THEMES, THEME_KEYS } from "../theme/themes";
+import { useTheme } from "./Theme";
 
 const PaletteContext = createContext({ open: () => {}, close: () => {} });
 export const usePalette = () => useContext(PaletteContext);
 
-const buildActions = (close) => [
+const buildActions = (close, setTheme) => [
     ...navLinks.map((n) => ({
         id: `go-${n.id}`,
         group: "Jump to",
@@ -83,6 +92,17 @@ const buildActions = (close) => [
             close();
         },
     },
+    ...THEME_KEYS.map((key) => ({
+        id: `theme-${key}`,
+        group: "Theme",
+        label: THEMES[key].label,
+        hint: THEMES[key].scheme,
+        icon: FiDroplet,
+        run: () => {
+            setTheme(key);
+            close();
+        },
+    })),
 ];
 
 export const PaletteProvider = ({ children }) => {
@@ -113,7 +133,8 @@ const Palette = ({ close }) => {
     const [query, setQuery] = useState("");
     const [cursor, setCursor] = useState(0);
     const inputRef = useRef(null);
-    const actions = useMemo(() => buildActions(close), [close]);
+    const { setTheme } = useTheme();
+    const actions = useMemo(() => buildActions(close, setTheme), [close, setTheme]);
 
     const results = useMemo(() => {
         const q = query.trim().toLowerCase();

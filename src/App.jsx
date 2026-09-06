@@ -1,5 +1,6 @@
 import { MotionConfig } from "framer-motion";
 import { PaletteProvider } from "./components/CommandPalette";
+import { ThemeProvider } from "./components/Theme";
 import { BootProvider } from "./components/Boot";
 import Nav from "./components/Nav";
 import TraceRail from "./components/TraceRail";
@@ -18,31 +19,33 @@ import Cursor from "./components/Cursor";
 const App = () => (
     // reducedMotion="user" makes every framer-motion transform respect the OS setting.
     <MotionConfig reducedMotion="user">
-        <PaletteProvider>
-            <BootProvider>
-                <div className="noise relative isolate min-h-screen bg-bg text-ink">
-                    <a href="#main" className="skip-link">
-                        Skip to content
-                    </a>
-                    <Cursor />
-                    <Nav />
-                    <TraceRail />
-                    <main id="main">
-                        <Hero />
-                        <div className="grid-bg pointer-events-none absolute inset-x-0 top-[100svh] -z-10 h-[1400px]" />
-                        <About />
-                        <Skills />
-                        <Experience />
-                        <Credentials />
-                        <Impact />
-                        <Projects />
-                        <Recommendations />
-                        <Contact />
-                    </main>
-                    <Footer />
-                </div>
-            </BootProvider>
-        </PaletteProvider>
+        <ThemeProvider>
+            <PaletteProvider>
+                <BootProvider>
+                    <div className="noise relative isolate min-h-screen bg-bg text-ink">
+                        <a href="#main" className="skip-link">
+                            Skip to content
+                        </a>
+                        <Cursor />
+                        <Nav />
+                        <TraceRail />
+                        <main id="main">
+                            <Hero />
+                            <div className="grid-bg pointer-events-none absolute inset-x-0 top-[100svh] -z-10 h-[1400px]" />
+                            <About />
+                            <Skills />
+                            <Experience />
+                            <Credentials />
+                            <Impact />
+                            <Projects />
+                            <Recommendations />
+                            <Contact />
+                        </main>
+                        <Footer />
+                    </div>
+                </BootProvider>
+            </PaletteProvider>
+        </ThemeProvider>
     </MotionConfig>
 );
 

@@ -3,10 +3,11 @@ import SectionHead from "./ui/SectionHead";
 import SkillGraph from "./SkillGraph";
 import ErrorBoundary from "./ErrorBoundary";
 import { DOMAINS, skillNodes } from "../data/skills";
-import colors from "../theme/colors";
+import { useTheme } from "./Theme";
 
 const Skills = () => {
     const [filter, setFilter] = useState(null);
+    const { palette } = useTheme();
     const counts = skillNodes.reduce(
         (acc, n) => ({ ...acc, [n.domain]: (acc[n.domain] || 0) + 1 }),
         {},
@@ -47,11 +48,11 @@ const Skills = () => {
                                     ? "border-transparent text-bg"
                                     : "border-line text-muted hover:text-ink"
                             }`}
-                            style={on ? { background: d.color } : undefined}
+                            style={on ? { background: palette[d.tone] } : undefined}
                         >
                             <span
                                 className="h-1.5 w-1.5 rounded-full"
-                                style={{ background: on ? colors.bg : d.color }}
+                                style={{ background: on ? palette.bg : palette[d.tone] }}
                             />
                             {d.id.toLowerCase()} · {counts[d.id] || 0}
                         </button>
