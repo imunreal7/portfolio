@@ -1,88 +1,18 @@
-export const textVariant = (delay) => {
-  return {
-    hidden: {
-      y: -50,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 1.25,
-        delay: delay,
-      },
-    },
-  };
+// Shared motion vocabulary so every section reveals with the same curve and rhythm.
+export const EASE = [0.22, 1, 0.36, 1];
+
+export const revealVariants = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
-export const fadeIn = (direction, type, delay, duration) => {
-  return {
-    hidden: {
-      x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
-      y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
-      opacity: 0,
-    },
-    show: {
-      x: 0,
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: type,
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
-export const zoomIn = (delay, duration) => {
-  return {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "tween",
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
-export const slideIn = (direction, type, delay, duration) => {
-  return {
-    hidden: {
-      x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
-      y: direction === "up" ? "100%" : direction === "down" ? "-100%" : 0,
-    },
-    show: {
-      x: 0,
-      y: 0,
-      transition: {
-        type: type,
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
-export const staggerContainer = (staggerChildren, delayChildren) => {
-  return {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: staggerChildren,
-        delayChildren: delayChildren || 0,
-      },
-    },
-  };
-};
+/**
+ * Props for a framer-motion element that fades and rises once as it scrolls into view.
+ * @param {number} [index=0] staggers siblings by 50ms each
+ */
+export const revealOnScroll = (index = 0) => ({
+    initial: { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-5% 0px" },
+    transition: { delay: index * 0.05, duration: 0.55, ease: EASE },
+});

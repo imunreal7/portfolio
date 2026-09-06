@@ -1,28 +1,22 @@
+const colors = require("./src/theme/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{js,jsx}"],
-    mode: "jit",
     theme: {
         extend: {
-            colors: {
-                primary: "#050816",
-                secondary: "#aaa6c3",
-                tertiary: "#151030",
-                "black-100": "#100d25",
-                "black-200": "#090325",
-                "white-100": "#f3f3f3",
+            fontFamily: {
+                display: ["Syne", "Inter", "system-ui", "sans-serif"],
+                body: ["Inter", "system-ui", "sans-serif"],
+                mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
             },
+            colors,
+            screens: { xs: "450px" },
             boxShadow: {
-                card: "0px 35px 120px -15px #211e35",
-            },
-            screens: {
-                xs: "450px",
-            },
-            backgroundImage: {
-                "profile-pattern": "url('../public/herobg.png')",
+                glow: `0 0 0 1px ${colors.acc}40, 0 0 40px -10px ${colors.acc}73`,
+                card: "0 30px 80px -30px rgba(0,0,0,0.8)",
             },
         },
     },
     plugins: [],
 };
-

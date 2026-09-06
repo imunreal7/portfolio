@@ -17,7 +17,7 @@ Technologies? Stacked like a full-course meal for a production-hungry dev.
 
 ## 🧠 Behind the Curtain
 
-- Built on **code and caffeine**, powered by **MERN**, and sprinkled with **3D sorcery** using `@react-three/fiber`.
+- Built on **code and caffeine** with **React, Tailwind, Framer Motion** and two hand-rolled **Canvas simulations**: a live publishing pipeline in the hero and a force-directed skill graph.
 - From **microservices to mood detectors**, from **cloud-native** to **game-native**, this repo reflects the _full-stack spectrum_ — and then some.
 - Oh, and yes — there's **DevOps** DNA in here too. Think pipelines, containers, and a whole lot of AWS zen.
 

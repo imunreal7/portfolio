@@ -1,21 +1,11 @@
 {
-    "short_name": "Portfolio",
-    "name": "Aman's Portfolio",
+    "short_name": "Aman Dubey",
+    "name": "Aman Dubey — Lead Software Engineer",
     "icons": [
-        {
-            "src": "logo.png",
-            "type": "image/png",
-            "sizes": "192x192"
-        },
-        {
-            "src": "logo.png",
-            "type": "image/png",
-            "sizes": "512x512"
-        }
+        { "src": "logo.png", "type": "image/png", "sizes": "580x405", "purpose": "any" }
     ],
     "start_url": ".",
     "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "theme_color": "#05070c",
+    "background_color": "#05070c"
 }
-
