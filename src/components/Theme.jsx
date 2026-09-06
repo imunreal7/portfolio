@@ -1,3 +1,9 @@
+// ─── Theme provider ──────────────────────────────────────────────────
+// Owns the active theme, writes it to <html data-theme>, localStorage and the
+// browser theme-colour, and hands the palette to anything that paints on canvas.
+// The inline script in public/index.html applies the stored theme before React
+// wakes up, so there is no flash of the wrong universe.
+
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { DEFAULT_THEME, THEMES } from "../theme/themes";
 

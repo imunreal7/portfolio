@@ -1,3 +1,6 @@
+// ─── Credentials ─────────────────────────────────────────────────────
+// Degree, certifications, publications and languages. The receipts section.
+
 import { motion } from "framer-motion";
 import { FiAward, FiBookOpen, FiExternalLink, FiGlobe } from "react-icons/fi";
 import SectionHead from "./ui/SectionHead";

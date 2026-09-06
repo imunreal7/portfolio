@@ -1,3 +1,10 @@
+// ─── Hero ────────────────────────────────────────────────────────────
+// The landing screen: the name, the role, live throughput counters, and a photo
+// wrapped in a 3D globe. Four background layers share the stage back here and
+// they all obey one house rule: nothing moves through the text. Text is for reading.
+// The counters do not measure anything live. They replay the platform's published
+// monthly rate from the moment you arrived, which is more honest and just as fun.
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowDown, FiCommand, FiFileText, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
@@ -123,6 +130,7 @@ const LiveThroughput = ({ enabled }) => {
     );
 };
 
+// Three facts that orbit the photo. They float because static badges look nervous.
 const badges = [
     { text: "25M+ posts / mo", pos: "-left-[5.25rem] top-8 lg:-left-[3.75rem]", delay: 0 },
     { text: "99.2% uptime", pos: "-right-4 top-1/3 lg:-right-14", delay: 1.2 },

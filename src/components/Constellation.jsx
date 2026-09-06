@@ -1,3 +1,8 @@
+// ─── Constellation ───────────────────────────────────────────────────
+// A slow-drifting mesh of nodes: services in a system that occasionally talk to
+// each other. Move the pointer and it becomes a hub that everything nearby wants
+// to connect to. Speed is capped low on purpose. Ambient, not anxious.
+
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";

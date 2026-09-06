@@ -1,3 +1,8 @@
+// ─── Facts ───────────────────────────────────────────────────────────
+// Every fact on the site lives here: roles, dates, numbers, projects, people.
+// If it is not on the resume or the LinkedIn profile, it does not go in this
+// file. Presentation belongs in src/data and the components; truth belongs here.
+
 const navLinks = [
     { id: "about", title: "About" },
     { id: "skills", title: "Skills" },

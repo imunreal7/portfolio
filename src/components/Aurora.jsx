@@ -1,3 +1,8 @@
+// ─── Aurora ──────────────────────────────────────────────────────────
+// A GPU aurora painted by a fragment shader in raw WebGL, no library, because a
+// distributed-systems engineer should be able to spawn a nebula with 200 lines.
+// Rendered at half resolution: the upscale is a free blur and the GPU gets a nap.
+
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { watchResize, watchVisibility } from "../utils/canvas";

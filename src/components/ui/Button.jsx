@@ -1,3 +1,6 @@
+// ─── Button ──────────────────────────────────────────────────────────
+// One button, three moods (primary, ghost, quiet), all slightly magnetic.
+
 import Magnetic from "./Magnetic";
 
 const base =

@@ -1,3 +1,7 @@
+// ─── Footer ──────────────────────────────────────────────────────────
+// The bottom of the page. If you read this far, you scrolled past four canvases,
+// a shader and a force graph without a single dropped frame. Thank you for noticing.
+
 import { profile } from "../data/profile";
 
 const Footer = () => (

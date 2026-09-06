@@ -1,3 +1,7 @@
+// ─── useCountUp ──────────────────────────────────────────────────────
+// Counts a number up from zero once it scrolls into view. Once. It is not a
+// slot machine.
+
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 

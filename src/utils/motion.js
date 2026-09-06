@@ -1,3 +1,5 @@
+// ─── Motion ──────────────────────────────────────────────────────────
+
 // Shared motion vocabulary so every section reveals with the same curve and rhythm.
 export const EASE = [0.22, 1, 0.36, 1];
 

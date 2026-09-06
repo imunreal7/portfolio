@@ -1,3 +1,7 @@
+// ─── Theme switcher ──────────────────────────────────────────────────
+// Four themes, one droplet. Popover in the nav, flat list in the mobile menu,
+// and a proper listbox for keyboards. Escape closes it, as Escape should.
+
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiCheck, FiDroplet } from "react-icons/fi";

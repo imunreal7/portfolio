@@ -1,3 +1,8 @@
+// ─── Projects ────────────────────────────────────────────────────────
+// Hover a name to preview it in a browser-shaped frame that tilts with the
+// pointer. Projects without a screenshot get a generated cover from their tag
+// colours. On phones it becomes a swipe deck, because hover is not a thing there.
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
     AnimatePresence,

@@ -1,3 +1,5 @@
+// ─── useSpotlight ────────────────────────────────────────────────────
+
 import { useCallback } from "react";
 
 // Writes the pointer position into --mx / --my so `.spot` surfaces can light up under the cursor.

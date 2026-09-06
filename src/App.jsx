@@ -1,3 +1,8 @@
+// ─── App ─────────────────────────────────────────────────────────────
+// The component tree, outermost to innermost: motion preferences, theme, command
+// palette, boot sequence, then the actual page. Providers wrap the page like
+// onion layers, except nobody cries. Usually.
+
 import { MotionConfig } from "framer-motion";
 import { PaletteProvider } from "./components/CommandPalette";
 import { ThemeProvider } from "./components/Theme";

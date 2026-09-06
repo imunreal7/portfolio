@@ -1,9 +1,12 @@
+// ─── Themes ──────────────────────────────────────────────────────────
+
 // Single source of truth for every palette. CommonJS so tailwind.config.js can read it at
 // build time while the app reads it at runtime; the two must never drift apart.
 //
 // Every theme defines the same keys. Solid colours are hex so Tailwind can apply opacity
 // modifiers to them; `line` and `shadow` are full rgba values used as-is.
 
+// The original. Dark, mint and violet. On-call at 2 a.m. energy.
 const midnight = {
     label: "Midnight",
     scheme: "dark",
@@ -27,6 +30,7 @@ const midnight = {
     },
 };
 
+// Warm. The colour of a server room you should probably go and check on.
 const ember = {
     label: "Ember",
     scheme: "dark",
@@ -50,6 +54,7 @@ const ember = {
     },
 };
 
+// Deep navy and cyan. Calm dashboards, every health check green.
 const ocean = {
     label: "Ocean",
     scheme: "dark",
@@ -73,6 +78,7 @@ const ocean = {
     },
 };
 
+// Light mode, for the brave and the well-lit.
 const paper = {
     label: "Paper",
     scheme: "light",

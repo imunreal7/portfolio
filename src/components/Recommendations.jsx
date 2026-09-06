@@ -1,3 +1,8 @@
+// ─── Recommendations ─────────────────────────────────────────────────
+// Kind words from people I have worked with, verbatim from LinkedIn, rotating
+// on a timer that pauses when you focus one. Missing photos fall back to a
+// monogram rather than a grey egg.
+
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FiLinkedin } from "react-icons/fi";

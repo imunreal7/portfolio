@@ -1,3 +1,8 @@
+// ─── Command palette ─────────────────────────────────────────────────
+// Cmd/Ctrl+K. Jump to sections, open links, copy the email, switch themes.
+// Built for the kind of visitor who reaches for the keyboard before the mouse.
+// You know who you are. Hello.
+
 import {
     createContext,
     useCallback,

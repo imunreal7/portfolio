@@ -1,6 +1,12 @@
+// ─── useScramble ─────────────────────────────────────────────────────
+// Resolves text out of random glyphs, left to right, like a terminal decoding a
+// message. The real text is in the DOM from the first render, so search engines
+// and screen readers never see the noise. Only humans get the show.
+
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 
+// The alphabet of static: letters, digits and the punctuation of a bad regex.
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%&*<>/\\|=+";
 const TICK_MS = 45;
 

@@ -1,3 +1,7 @@
+// ─── Contact ─────────────────────────────────────────────────────────
+// Ways to reach me and a local clock so you know whether I am awake.
+// I probably am.
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {

@@ -1,3 +1,7 @@
+// ─── Cursor ring ─────────────────────────────────────────────────────
+// A soft ring that trails the pointer and swells over anything clickable.
+// Pointer devices only. Your thumb does not need a spring-loaded halo.
+
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
@@ -27,6 +31,7 @@ const Cursor = () => {
         const onMove = (e) => {
             x.set(e.clientX - SIZE / 2);
             y.set(e.clientY - SIZE / 2);
+            // Anything clickable makes the ring swell. Anticipation is a feature.
             setHot(Boolean(e.target.closest?.("a, button, [role='button'], input, textarea")));
         };
         window.addEventListener("pointermove", onMove, { passive: true });

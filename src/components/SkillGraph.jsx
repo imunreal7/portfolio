@@ -1,3 +1,8 @@
+// ─── Skill graph ─────────────────────────────────────────────────────
+// A live force-directed graph of every technology on the resume, clustered by
+// what it does. Drag nodes, hover for names, and watch physics do the layout so
+// nobody has to argue about where Redis goes. (Data. It goes in Data.)
+
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { DOMAINS, skillNodes } from "../data/skills";

@@ -1,3 +1,6 @@
+// ─── Skills data ─────────────────────────────────────────────────────
+// Turns the flat technology list into graph nodes with a domain and a weight.
+
 import { technologies, tools } from "../constants";
 
 // Domain grouping is presentational. Names and icons come from the constants file.

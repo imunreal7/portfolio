@@ -1,3 +1,9 @@
+// ─── Pipeline strip ──────────────────────────────────────────────────
+// The Social Planner publishing path as a particle river: schedule, optimize
+// media, refresh tokens, publish. Particles ring each stage as they pass, and the
+// cursor acts as a load balancer they route around. It is pre-seeded on load so
+// it never opens on an empty queue. Empty queues make on-call engineers nervous.
+
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { pipeline } from "../data/profile";
@@ -118,6 +124,7 @@ const PipelineCanvas = () => {
             if (stageX !== undefined && prevX < stageX * w && p.x >= stageX * w) {
                 flashes.push({ x: stageX * w, y: p.y, r: 2, a: 0.9, color: p.color });
                 p.stage += 1;
+                // Published. Celebrate with a small, dignified fan-out.
                 if (p.stage === STAGE_X.length) p.vy += rand(-40, 40);
             }
         };

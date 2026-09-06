@@ -1,3 +1,7 @@
+// ─── Error boundary ──────────────────────────────────────────────────
+// Wraps each canvas so a rendering hiccup takes out one animation, not the
+// whole portfolio. Blast radius matters on a résumé too.
+
 import { Component } from "react";
 
 /**

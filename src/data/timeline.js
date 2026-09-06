@@ -1,3 +1,6 @@
+// ─── Timeline ────────────────────────────────────────────────────────
+// Parses the experience dates into a year scale for the sticky tracker.
+
 import { experiences } from "../constants";
 
 const MONTHS = {

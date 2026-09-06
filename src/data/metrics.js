@@ -1,3 +1,6 @@
+// ─── Metrics ─────────────────────────────────────────────────────────
+// The numbers shown in Impact, each tied to the experience bullet it came from.
+
 // Every number below appears verbatim in the experience bullets in src/constants/index.js.
 export const metrics = [
     {

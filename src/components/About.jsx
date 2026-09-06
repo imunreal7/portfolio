@@ -1,3 +1,7 @@
+// ─── About ───────────────────────────────────────────────────────────
+// Who I am, in prose on the left and as a config file on the right, because
+// every engineer secretly wants their bio to be machine-readable.
+
 import { motion } from "framer-motion";
 import SectionHead from "./ui/SectionHead";
 import { useSpotlight } from "../hooks/useSpotlight";

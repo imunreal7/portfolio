@@ -1,3 +1,6 @@
+// ─── Profile ─────────────────────────────────────────────────────────
+// Identity, links, platform figures and the pipeline stages the hero animates.
+
 // Identity and contact facts. Everything here is copied from the previous site verbatim.
 export const profile = {
     name: "Aman Dubey",

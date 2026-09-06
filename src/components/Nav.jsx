@@ -1,3 +1,8 @@
+// ─── Nav ─────────────────────────────────────────────────────────────
+// Fixed header with the scroll progress bar, section links that light up as you
+// pass them, the theme switcher and the command palette trigger. Turns to glass
+// once you scroll, because a transparent bar over a headline is a crime.
+
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiCommand, FiMenu, FiX } from "react-icons/fi";

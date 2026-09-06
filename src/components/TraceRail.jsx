@@ -1,3 +1,7 @@
+// ─── Trace rail ──────────────────────────────────────────────────────
+// The vertical dot rail on the left: one stop per section, current stop lit,
+// like a request trace across services. The whole page is a span, really.
+
 import { motion } from "framer-motion";
 import { navLinks } from "../constants";
 import { useActiveSection } from "../hooks/useActiveSection";

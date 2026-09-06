@@ -1,3 +1,7 @@
+// ─── Skills ──────────────────────────────────────────────────────────
+// Filter chips over the force graph. Pick a domain and its nodes rush to the
+// centre; pick nothing and the whole zoo drifts back into clusters.
+
 import { useState } from "react";
 import SectionHead from "./ui/SectionHead";
 import SkillGraph from "./SkillGraph";

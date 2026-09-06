@@ -1,3 +1,9 @@
+// ─── Boot sequence ───────────────────────────────────────────────────
+// The terminal-style intro that plays on every load. Yes, every load. A system
+// that skips its own boot checks is a system you should worry about.
+// Every line it prints is computed from real data in src/constants, so the
+// numbers on screen are the numbers on the resume. Click anywhere to skip.
+
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { experiences, projects, recommendations } from "../constants";

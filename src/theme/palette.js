@@ -1,3 +1,5 @@
+// ─── Palette helpers ─────────────────────────────────────────────────
+
 /**
  * "#rrggbb" plus an alpha → "rgba(r,g,b,a)". Canvas code paints with literal values, so it
  * needs this instead of Tailwind's opacity modifiers.

@@ -1,3 +1,7 @@
+// ─── Experience ──────────────────────────────────────────────────────
+// Roles newest first, with a sticky year tracker that follows the card you are
+// reading. Tenures are counted in whole months, inclusive, because HR would.
+
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import SectionHead from "./ui/SectionHead";

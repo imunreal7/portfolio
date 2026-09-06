@@ -1,3 +1,8 @@
+// ─── Impact ──────────────────────────────────────────────────────────
+// The numbers, counting up when they scroll into view. Each one is quoted
+// verbatim from an experience bullet and a test makes sure that stays true,
+// so nothing here can quietly inflate over time. Unlike most metrics decks.
+
 import { motion } from "framer-motion";
 import SectionHead from "./ui/SectionHead";
 import { useCountUp } from "../hooks/useCountUp";

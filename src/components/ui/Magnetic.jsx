@@ -1,3 +1,7 @@
+// ─── Magnetic ────────────────────────────────────────────────────────
+// Leans an element toward the pointer with a spring, then lets it go.
+// Tiny effect, disproportionate joy. Disabled under reduced motion.
+
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 

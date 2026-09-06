@@ -1,3 +1,7 @@
+// ─── Canvas helpers ──────────────────────────────────────────────────
+// The three chores every canvas here repeats: fit the parent at the right pixel
+// ratio, pause when off screen or in a hidden tab, and resize with its host.
+
 /**
  * Sizes a canvas to its parent in CSS pixels and scales the context for the device pixel ratio.
  * @returns {{ w: number, h: number }} the drawing size in CSS pixels

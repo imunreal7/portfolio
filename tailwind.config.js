@@ -1,3 +1,7 @@
+// ─── Tailwind ─────────────────────────────────────────────────────────────
+// Fonts, screens, shadows, and the plugin that turns src/theme/themes.js into
+// CSS variables. Change a colour there, not here. Here is just plumbing.
+
 const plugin = require("tailwindcss/plugin");
 const { THEMES, DEFAULT_THEME, SOLID_KEYS, channels } = require("./src/theme/themes");
 

@@ -1,3 +1,6 @@
+// ─── useActiveSection ────────────────────────────────────────────────
+// Which section is on screen right now, for the nav and the trace rail.
+
 import { useEffect, useState } from "react";
 
 /**

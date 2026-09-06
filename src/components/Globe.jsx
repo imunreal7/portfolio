@@ -1,3 +1,9 @@
+// ─── Globe ───────────────────────────────────────────────────────────
+// A 3D sphere of points around the portrait, drawn on a plain 2D canvas with
+// hand-rolled projection. Arcs launch between points like posts leaving one
+// account and landing on another. Points behind the face stay hidden; points in
+// front stay faint. Nobody wants a dot on their nose.
+
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { fitCanvas, watchResize, watchVisibility } from "../utils/canvas";
@@ -92,6 +98,7 @@ const Globe = ({ coreRadius = 0.72 }) => {
         const launchArc = () => {
             const from = base[Math.floor(Math.random() * base.length)];
             let to = base[Math.floor(Math.random() * base.length)];
+            // A post that publishes to itself is just a draft. Pick a real destination.
             if (to === from) to = base[(base.indexOf(from) + 97) % base.length];
             arcs.push({
                 from,

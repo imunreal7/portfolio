@@ -1,3 +1,6 @@
+// ─── Section head ────────────────────────────────────────────────────
+// Index, service name and headline for every section, styled like a log line.
+
 import { motion } from "framer-motion";
 
 import { revealVariants } from "../../utils/motion";
