@@ -16,8 +16,8 @@ export const profile = {
     connections: "500+",
     timeZone: "Asia/Kolkata",
     yearsLabel: "6+",
-    avatar: "./myImage.png",
-    logo: "./logo.png",
+    avatar: "./myImage.webp",
+    logo: "./logo.webp",
     tagline:
         "I build scalable, cloud-native platforms processing millions using NestJS, Python, TypeScript, GCP & AWS.",
     about: "I am a Lead Software Engineer with over 6 years of experience designing, building, and scaling distributed, cloud-native platforms. Currently, I lead engineering for Social Planner at HighLevel — a platform processing 25M+ posts/month with 99.2% uptime across major social channels. My expertise spans Node.js, NestJS, TypeScript, Python, Vue.js, and AWS & GCP architectures, with a focus on distributed systems, microservices, AI-powered systems, and driving reliability through technical mentorship & cross-functional collaboration.",

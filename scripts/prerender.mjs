@@ -55,6 +55,17 @@ const scrollToBottom = () =>
         step();
     });
 
+// Fonts used above the fold. Preloading them removes the fallback-to-webfont reflow (layout shift)
+// and lets the headline paint in its final face on the first frame.
+const PRELOAD_FONTS = [/^syne-latin-800-normal\./, /^syne-latin-700-normal\./, /^inter-latin-400-normal\./, /^inter-latin-500-normal\./, /^jetbrains-mono-latin-400-normal\./];
+const withFontPreloads = (html, mediaFiles) => {
+    const links = PRELOAD_FONTS.map((re) => mediaFiles.find((f) => re.test(f) && f.endsWith(".woff2")))
+        .filter(Boolean)
+        .map((f) => `<link rel="preload" as="font" type="font/woff2" crossorigin href="/static/media/${f}">`)
+        .join("");
+    return html.replace("<link href=\"/static/css/", `${links}<link href="/static/css/`);
+};
+
 const main = async () => {
     const server = await serve();
     const { port } = server.address();
@@ -104,7 +115,7 @@ const main = async () => {
         if (rootText < 1000)
             throw new Error(`Prerender produced too little content (${rootText} chars)`);
 
-        await fs.writeFile(INDEX, html);
+        await fs.writeFile(INDEX, withFontPreloads(html, await fs.readdir(path.join(BUILD_DIR, "static", "media"))));
         console.log(
             `Prerendered build/index.html (${html.length} bytes, ${rootText} chars of text)`,
         );

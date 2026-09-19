@@ -2,12 +2,14 @@
 // Filter chips over the force graph. Pick a domain and its nodes rush to the
 // centre; pick nothing and the whole zoo drifts back into clusters.
 
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import SectionHead from "./ui/SectionHead";
-import SkillGraph from "./SkillGraph";
 import ErrorBoundary from "./ErrorBoundary";
 import { DOMAINS, skillNodes } from "../data/skills";
 import { useTheme } from "./Theme";
+
+// The force simulation is the heaviest chunk on the page; it loads once the section is needed.
+const SkillGraph = lazy(() => import("./SkillGraph"));
 
 const Skills = () => {
     const [filter, setFilter] = useState(null);
@@ -79,7 +81,9 @@ const Skills = () => {
                         </ul>
                     }
                 >
-                    <SkillGraph filter={filter} />
+                    <Suspense fallback={null}>
+                        <SkillGraph filter={filter} />
+                    </Suspense>
                 </ErrorBoundary>
             </div>
         </section>

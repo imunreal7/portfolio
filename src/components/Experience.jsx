@@ -52,11 +52,18 @@ const Track = ({ active, onPick, vertical }) => (
                     type="button"
                     onClick={() => onPick(r.id)}
                     aria-label={`${r.title}, ${r.company}, ${r.date}`}
-                    className={`absolute rounded-full transition-all duration-500 ${
-                        vertical ? "w-[9px]" : "h-[9px]"
-                    } ${on ? "bg-acc shadow-glow" : r.present ? "bg-acc/40" : "bg-dim/60 hover:bg-muted"}`}
+                    className={`group absolute ${vertical ? "-ml-2 w-6 min-h-6" : "-mt-2 h-6 min-w-6"}`}
                     style={style}
-                />
+                >
+                    <span
+                        aria-hidden="true"
+                        className={`absolute rounded-full transition-all duration-500 ${
+                            vertical
+                                ? "inset-y-0 left-1/2 w-[9px] -translate-x-1/2"
+                                : "inset-x-0 top-1/2 h-[9px] -translate-y-1/2"
+                        } ${on ? "bg-acc shadow-glow" : r.present ? "bg-acc/40" : "bg-dim/60 group-hover:bg-muted"}`}
+                    />
+                </button>
             );
         })}
     </div>

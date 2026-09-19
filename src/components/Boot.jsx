@@ -1,6 +1,7 @@
 // ─── Boot sequence ───────────────────────────────────────────────────
-// The terminal-style intro that plays on every load. Yes, every load. A system
-// that skips its own boot checks is a system you should worry about.
+// The terminal-style intro that plays on the first load of a session. Reloads and
+// return visits in the same tab skip it: a system that re-runs its boot checks on
+// every request is a system you should worry about.
 // Every line it prints is computed from real data in src/constants, so the
 // numbers on screen are the numbers on the resume. Click anywhere to skip.
 
@@ -9,9 +10,26 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { experiences, projects, recommendations } from "../constants";
 import { skillNodes } from "../data/skills";
 
-const LINE_DELAY = 190;
-const LINE_START = 160;
-const HOLD = 420;
+const LINE_DELAY = 140;
+const LINE_START = 120;
+const HOLD = 300;
+const SESSION_KEY = "booted";
+
+// Session-scoped so the intro plays once per tab, not on every reload.
+const alreadyBooted = () => {
+    try {
+        return sessionStorage.getItem(SESSION_KEY) === "1";
+    } catch {
+        return false;
+    }
+};
+const rememberBoot = () => {
+    try {
+        sessionStorage.setItem(SESSION_KEY, "1");
+    } catch {
+        /* storage unavailable: the intro simply plays again next time */
+    }
+};
 
 const LINES = [
     `resolving profile ........ Aman Dubey`,
@@ -31,10 +49,13 @@ export const useBooted = () => useContext(BootContext);
 // animations are gated on `useBooted()` so the hero always comes in after the overlay lifts.
 export const BootProvider = ({ children }) => {
     const reduce = useReducedMotion();
-    const [booted, setBooted] = useState(false);
+    const [booted, setBooted] = useState(alreadyBooted);
     const [count, setCount] = useState(0);
 
-    const finish = useCallback(() => setBooted(true), []);
+    const finish = useCallback(() => {
+        rememberBoot();
+        setBooted(true);
+    }, []);
 
     useEffect(() => {
         if (booted) return undefined;

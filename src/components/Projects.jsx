@@ -129,11 +129,13 @@ const Media = ({ project, className }) =>
         <Cover project={project} className={className} />
     );
 
-// Wraps children in an external link only when the project has one.
-const MaybeLink = ({ href, className, children }) =>
+// Wraps children in an external link only when the project has one. `label` is read
+// by assistive tech, since the visible content is an image or a decorative frame.
+const MaybeLink = ({ href, label, className, children }) =>
     href ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
             {children}
+            {label && <span className="sr-only">{label}</span>}
         </a>
     ) : (
         <div className={className}>{children}</div>
@@ -175,6 +177,7 @@ const Preview = ({ project }) => {
                     >
                         <MaybeLink
                             href={project.live_link}
+                            label={`Open ${project.name}`}
                             className="panel block overflow-hidden shadow-card"
                         >
                             <div className="flex items-center gap-2 border-b border-line px-4 py-2 font-mono text-[10px] text-dim">
@@ -204,7 +207,7 @@ const Preview = ({ project }) => {
 
 const ProjectCard = ({ project, index }) => (
     <article className="panel flex h-full flex-col overflow-hidden">
-        <MaybeLink href={project.live_link} className="block">
+        <MaybeLink href={project.live_link} label={`Open ${project.name}`} className="block">
             <Media project={project} className="aspect-[16/10] w-full" />
         </MaybeLink>
         <div className="flex flex-1 flex-col gap-3 p-5">

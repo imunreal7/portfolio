@@ -5,13 +5,9 @@
 // The counters do not measure anything live. They replay the platform's published
 // monthly rate from the moment you arrived, which is more honest and just as fun.
 
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowDown, FiCommand, FiFileText, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-import PipelineCanvas from "./PipelineCanvas";
-import Constellation from "./Constellation";
-import Aurora from "./Aurora";
-import Globe from "./Globe";
 import useScramble from "../hooks/useScramble";
 import ErrorBoundary from "./ErrorBoundary";
 import Button from "./ui/Button";
@@ -19,6 +15,12 @@ import { usePalette } from "./CommandPalette";
 import { useBooted } from "./Boot";
 import { links, platform, profile } from "../data/profile";
 import { EASE } from "../utils/motion";
+
+// The canvases are decoration. They load in their own chunks after the copy has painted.
+const PipelineCanvas = lazy(() => import("./PipelineCanvas"));
+const Constellation = lazy(() => import("./Constellation"));
+const Aurora = lazy(() => import("./Aurora"));
+const Globe = lazy(() => import("./Globe"));
 
 const SECONDS_PER_MONTH = 30 * 24 * 3600;
 const POSTS_PER_SEC = platform.postsPerMonth / SECONDS_PER_MONTH;
@@ -152,11 +154,14 @@ const Portrait = () => (
             className="absolute inset-10 h-[calc(100%-5rem)] w-[calc(100%-5rem)] rounded-full object-cover ring-1 ring-ink/10"
             width={500}
             height={500}
+            fetchPriority="high"
         />
         {/* Oversized so arcs can bow outside the sphere; the sphere itself hugs the photo. */}
         <div className="pointer-events-none absolute -inset-[30%]">
             <ErrorBoundary>
-                <Globe coreRadius={0.74} />
+                <Suspense fallback={null}>
+                    <Globe coreRadius={0.74} />
+                </Suspense>
             </ErrorBoundary>
         </div>
         {badges.map((b) => (
@@ -183,12 +188,16 @@ const Hero = () => {
             {/* GPU aurora curtains at the top and bottom, then the slow mesh above them. */}
             <div className="absolute inset-0">
                 <ErrorBoundary>
-                    <Aurora />
+                    <Suspense fallback={null}>
+                        <Aurora />
+                    </Suspense>
                 </ErrorBoundary>
             </div>
             <div className="absolute inset-0">
                 <ErrorBoundary>
-                    <Constellation />
+                    <Suspense fallback={null}>
+                        <Constellation />
+                    </Suspense>
                 </ErrorBoundary>
             </div>
 
@@ -225,6 +234,7 @@ const Hero = () => {
                     alt={profile.name}
                     width={500}
                     height={500}
+                    fetchPriority="high"
                     className="mb-6 h-20 w-20 rounded-full object-cover ring-1 ring-acc/40 sm:hidden"
                 />
 
@@ -302,7 +312,9 @@ const Hero = () => {
             {/* The publishing pipeline runs in its own strip below the copy, so it never competes with it. */}
             <div className="relative h-[150px] shrink-0 sm:h-[180px]">
                 <ErrorBoundary>
-                    <PipelineCanvas />
+                    <Suspense fallback={null}>
+                        <PipelineCanvas />
+                    </Suspense>
                 </ErrorBoundary>
             </div>
 

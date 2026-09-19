@@ -122,7 +122,6 @@ const Recommendations = () => {
                                     <button
                                         type="button"
                                         onClick={() => setIndex(i)}
-                                        aria-label={r.name}
                                         aria-pressed={on}
                                         className={`flex h-full w-full items-center gap-3 px-4 py-4 text-left transition-colors sm:px-6 ${
                                             on
@@ -134,6 +133,7 @@ const Recommendations = () => {
                                             person={r}
                                             className={`h-9 w-9 rounded-full object-cover transition-opacity ${on ? "" : "opacity-60"}`}
                                         />
+                                        <span className="sr-only sm:hidden">{r.name}</span>
                                         <span className="hidden sm:block">
                                             <span className="block text-sm font-medium">
                                                 {r.name}

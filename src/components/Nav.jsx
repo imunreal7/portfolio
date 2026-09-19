@@ -53,8 +53,8 @@ const Nav = () => {
                             src={profile.logo}
                             alt=""
                             className="h-7 w-auto"
-                            width={580}
-                            height={405}
+                            width={160}
+                            height={112}
                         />
                         <span className="hidden font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:inline">
                             {profile.name}
