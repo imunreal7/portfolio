@@ -30,79 +30,32 @@ const midnight = {
     },
 };
 
-// Warm. The colour of a server room you should probably go and check on.
-const ember = {
-    label: "Ember",
-    scheme: "dark",
-    colors: {
-        bg: "#0c0806",
-        surface: "#150f0b",
-        raised: "#211812",
-        ink: "#f6ede3",
-        muted: "#ab9688",
-        dim: "#958070",
-        acc: "#ffb45e",
-        acc2: "#ff6f6f",
-        acc3: "#ffd66a",
-        danger: "#ff4d6d",
-        sky: "#f0955a",
-        cyan: "#ffc98a",
-        slate: "#a38d7b",
-        haze: "#ffe4c4",
-        line: "rgba(255,236,214,0.09)",
-        shadow: "rgba(0,0,0,0.8)",
-    },
-};
-
-// Deep navy and cyan. Calm dashboards, every health check green.
-const ocean = {
-    label: "Ocean",
-    scheme: "dark",
-    colors: {
-        bg: "#03111c",
-        surface: "#071a29",
-        raised: "#0c2638",
-        ink: "#e4f3fc",
-        muted: "#90b1c5",
-        dim: "#7090a4",
-        acc: "#3dd9ff",
-        acc2: "#8aa4ff",
-        acc3: "#ffd36e",
-        danger: "#ff7a9a",
-        sky: "#5cc6f8",
-        cyan: "#2ee6d2",
-        slate: "#8caabe",
-        haze: "#caf4ff",
-        line: "rgba(200,235,255,0.09)",
-        shadow: "rgba(0,0,0,0.8)",
-    },
-};
-
-// Light mode, for the brave and the well-lit.
-const paper = {
-    label: "Paper",
+// Midnight in daylight: the same mint and violet on a cool, soft grey-blue base,
+// kept a step below white so it is easy on the eyes without going dull.
+const daylight = {
+    label: "Daylight",
     scheme: "light",
     colors: {
-        bg: "#f5f2ea",
-        surface: "#fbf9f4",
-        raised: "#ebe6da",
-        ink: "#151a24",
-        muted: "#56606f",
-        dim: "#606670",
-        acc: "#0e8f6f",
-        acc2: "#6a4fd8",
-        acc3: "#b8720a",
-        danger: "#cf2f57",
-        sky: "#1f5fd0",
-        cyan: "#0a8fa3",
-        slate: "#5e6b7a",
-        haze: "#0b7a86",
-        line: "rgba(20,24,32,0.12)",
-        shadow: "rgba(20,24,32,0.25)",
+        bg: "#e0e4ec",
+        surface: "#e9ecf2",
+        raised: "#d3d8e3",
+        ink: "#151b2b",
+        muted: "#4b5567",
+        dim: "#535d71",
+        acc: "#0f8a6c",
+        acc2: "#6a51d6",
+        acc3: "#a86800",
+        danger: "#c9345a",
+        sky: "#2a5fd6",
+        cyan: "#14889e",
+        slate: "#5a6a80",
+        haze: "#2f9fb4",
+        line: "rgba(21,27,43,0.11)",
+        shadow: "rgba(21,27,43,0.16)",
     },
 };
 
-const THEMES = { midnight, ember, ocean, paper };
+const THEMES = { midnight, daylight };
 const THEME_KEYS = Object.keys(THEMES);
 const DEFAULT_THEME = "midnight";
 

@@ -185,8 +185,9 @@ const Hero = () => {
 
     return (
         <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden">
-            {/* GPU aurora curtains at the top and bottom, then the slow mesh above them. */}
-            <div className="absolute inset-0">
+            {/* GPU aurora curtains at the top and bottom, then the slow mesh above them.
+                On the light theme the curtains multiply into the base instead of washing it out. */}
+            <div className="absolute inset-0 [[data-theme=daylight]_&]:opacity-50 [[data-theme=daylight]_&]:mix-blend-multiply">
                 <ErrorBoundary>
                     <Suspense fallback={null}>
                         <Aurora />

@@ -52,7 +52,7 @@ const Nav = () => {
                         <img
                             src={profile.logo}
                             alt=""
-                            className="h-7 w-auto"
+                            className="h-7 w-auto [[data-theme=daylight]_&]:invert"
                             width={160}
                             height={112}
                         />
