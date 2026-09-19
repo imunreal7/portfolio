@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && node scripts/prerender.mjs",
     "test": "react-scripts test --watchAll=false",
     "lint": "eslint src --ext .js,.jsx --max-warnings 0",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
@@ -39,6 +39,7 @@
     "postcss": "^8.5.28",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
+    "puppeteer": "^24.43.1",
     "tailwindcss": "^3.3.3"
   },
   "overrides": {
