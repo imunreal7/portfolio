@@ -2,7 +2,8 @@
     "short_name": "Aman Dubey",
     "name": "Aman Dubey — Lead Software Engineer",
     "icons": [
-        { "src": "logo.png", "type": "image/png", "sizes": "580x405", "purpose": "any" }
+        { "src": "icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+        { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
     ],
     "start_url": ".",
     "display": "standalone",
