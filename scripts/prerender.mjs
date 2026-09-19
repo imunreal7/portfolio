@@ -32,14 +32,16 @@ const serve = () =>
             const file = path.join(BUILD_DIR, url.pathname === "/" ? "index.html" : url.pathname);
             try {
                 const body = await fs.readFile(file);
-                res.writeHead(200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
+                res.writeHead(200, {
+                    "Content-Type": MIME[path.extname(file)] || "application/octet-stream",
+                });
                 res.end(body);
             } catch {
                 res.writeHead(200, { "Content-Type": "text/html" });
                 res.end(await fs.readFile(INDEX));
             }
         });
-        server.listen(0, () => resolve(server));
+        server.listen(0, "127.0.0.1", () => resolve(server));
     });
 
 const scrollToBottom = () =>
@@ -56,12 +58,17 @@ const scrollToBottom = () =>
 const main = async () => {
     const server = await serve();
     const { port } = server.address();
+    const origin = `http://127.0.0.1:${port}`;
     const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
     try {
         const page = await browser.newPage();
         await page.setViewport({ width: 1366, height: 900 });
-        await page.goto(`http://localhost:${port}/`, { waitUntil: "networkidle0" });
-        await page.waitForSelector("#root h1");
+        // Only talk to the local server. External requests (Google Fonts) are aborted so the
+        // render never depends on network access from the build machine.
+        await page.setRequestInterception(true);
+        page.on("request", (req) => (req.url().startsWith(origin) ? req.continue() : req.abort()));
+        await page.goto(`${origin}/`, { waitUntil: "load", timeout: 60_000 });
+        await page.waitForSelector("#root h1", { timeout: 60_000 });
         // Scroll through the page so scroll-triggered sections render their content.
         await page.evaluate(scrollToBottom);
         await new Promise((r) => setTimeout(r, SETTLE_MS));
@@ -78,12 +85,19 @@ const main = async () => {
             });
         });
 
-        const html = await page.evaluate(() => "<!doctype html>" + document.documentElement.outerHTML);
-        const rootText = await page.evaluate(() => document.getElementById("root").innerText.length);
-        if (rootText < 1000) throw new Error(`Prerender produced too little content (${rootText} chars)`);
+        const html = await page.evaluate(
+            () => "<!doctype html>" + document.documentElement.outerHTML,
+        );
+        const rootText = await page.evaluate(
+            () => document.getElementById("root").innerText.length,
+        );
+        if (rootText < 1000)
+            throw new Error(`Prerender produced too little content (${rootText} chars)`);
 
         await fs.writeFile(INDEX, html);
-        console.log(`Prerendered build/index.html (${html.length} bytes, ${rootText} chars of text)`);
+        console.log(
+            `Prerendered build/index.html (${html.length} bytes, ${rootText} chars of text)`,
+        );
     } finally {
         await browser.close();
         server.close();
