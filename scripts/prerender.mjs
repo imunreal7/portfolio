@@ -63,31 +63,41 @@ const main = async () => {
     try {
         const page = await browser.newPage();
         await page.setViewport({ width: 1366, height: 900 });
+        // The site honours prefers-reduced-motion: the boot overlay, the name scramble and
+        // most entrance animations are skipped, so the capture is deterministic.
+        await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
         // Only talk to the local server. External requests (Google Fonts) are aborted so the
         // render never depends on network access from the build machine.
         await page.setRequestInterception(true);
         page.on("request", (req) => (req.url().startsWith(origin) ? req.continue() : req.abort()));
         await page.goto(`${origin}/`, { waitUntil: "load", timeout: 60_000 });
         await page.waitForSelector("#root h1", { timeout: 60_000 });
+        // Make sure the boot overlay is gone and the name is not mid-scramble.
+        await page.waitForFunction(
+            () =>
+                !document.querySelector('[role="status"].fixed') &&
+                document.querySelector("#root h1")?.innerText.replace(/\s+/g, " ").trim() ===
+                    "Aman Dubey",
+            { timeout: 60_000 },
+        );
         // Scroll through the page so scroll-triggered sections render their content.
         await page.evaluate(scrollToBottom);
         await new Promise((r) => setTimeout(r, SETTLE_MS));
         await page.evaluate(() => window.scrollTo(0, 0));
         await new Promise((r) => setTimeout(r, 300));
 
-        // Strip framer-motion's in-flight inline styles so no text is left at opacity 0
-        // in the static HTML. The animations are re-applied on the client once React mounts.
-        await page.evaluate(() => {
-            document.querySelectorAll("#root [style]").forEach((el) => {
+        // Serialize a clone with framer-motion's in-flight inline styles stripped, in one
+        // step so animations cannot re-apply opacity 0 between stripping and capture.
+        // The animations are re-applied on the client once React mounts.
+        const html = await page.evaluate(() => {
+            const clone = document.documentElement.cloneNode(true);
+            clone.querySelectorAll("#root [style]").forEach((el) => {
                 el.style.removeProperty("opacity");
                 el.style.removeProperty("transform");
                 if (!el.getAttribute("style")) el.removeAttribute("style");
             });
+            return "<!doctype html>" + clone.outerHTML;
         });
-
-        const html = await page.evaluate(
-            () => "<!doctype html>" + document.documentElement.outerHTML,
-        );
         const rootText = await page.evaluate(
             () => document.getElementById("root").innerText.length,
         );
